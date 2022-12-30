@@ -1,0 +1,41 @@
+
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong|Roboto&display=swap');
+.f-slider{
+    display: flex;
+    height: 6.4vh;
+    
+    background-color: var(--fbar);
+    font-size: 1.05rem;
+    font-weight: 300;
+    font-family: Roboto;
+}
+
+.f-button{
+    cursor: pointer;
+    background: var(--sidebarDark);
+    background-color: var(--fbutton);
+    color: var(--skin);
+    outline: none;
+    border: none;
+    height: inherit;
+    width: 9.125rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.2rem;
+    letter-spacing: 0.5px;
+    border-right:1px solid rgb(37, 37, 38)
+}
+.f-button #f0:hover{
+    background-color: black;
+}
+.cross{
+    transform: scale(1.2);
+    padding:0 0.3rem;
+    border-radius: 20%;
+    color: var(--white);
+}
+.cross:hover{
+    background: rgba(255, 255, 255, 0.058);
+    
+}

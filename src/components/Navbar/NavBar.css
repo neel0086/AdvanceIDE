@@ -1,0 +1,21 @@
+#dropdown-basic::after {
+    content: none;
+}
+#dropdown-basic{
+    background-color: inherit;
+    outline: none;
+    border: none;
+    /* padding-left: 0; */
+    /* margin-left: 0; */
+}
+.n-container{
+    width: inherit;
+    display: flex;
+    z-index: 1000;
+}
+input label{
+    cursor: pointer;
+    width: inherit;
+    height: inherit;
+        
+}

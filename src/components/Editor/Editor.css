@@ -1,0 +1,29 @@
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: none; 
+    
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(57, 57, 57); 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(50, 50, 51, 0.809); 
+  }
+
+.f-nabar{
+  display: flex;
+  flex-direction: column;
+}
+
+.ace-line span{
+  line-height: 10rem;
+}

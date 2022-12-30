@@ -1,0 +1,24 @@
+.ft-container {
+    color: white;
+    display: flex;
+    flex-direction:column;
+}
+.ft-nav{
+     margin: 1rem;
+}
+.ft-name{
+    width: inherit;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+}
+.ft-name img{
+    width: 3rem;
+    filter: invert(1);
+
+}
+.ft-name *{
+    padding-right: 0.2rem;
+    padding-left:0.2rem ;
+    font-family: Roboto;
+}

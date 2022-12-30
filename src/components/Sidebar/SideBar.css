@@ -1,0 +1,43 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.SidebarUi{
+    display: flex;
+    flex-direction: row;
+    height: inherit;
+    background-color: var(--sidebarDark);
+    /* overflow: hidden; */
+    z-index: 1000;
+    
+    
+}
+
+.d-icons{
+    cursor: pointer;
+    filter:invert(1);
+    width: 50px;
+    height: 40px;
+}
+.d-icons:hover{
+    filter: invert(0.5);
+}
+.folderDir{
+    width: inherit;
+    margin: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.f-icons{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    margin: 1rem;
+    
+}
+
+.f-icons .d-icons{
+    margin-bottom:4rem ;
+}
