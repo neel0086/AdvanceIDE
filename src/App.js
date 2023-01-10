@@ -17,6 +17,7 @@ import SidebarExpandable from "./components/Sidebar/SidebarExpandable";
 import SideBarProvider from "./context/SideBarProvider";
 import FolderProvider from "./context/FolderProvider";
 import InputOuput from "./components/bottombar/InputOuput";
+import Tree from "./components/treeTesting/Tree";
 const axios = require("axios");
 
 const theme = createTheme({
@@ -78,6 +79,7 @@ function App() {
                   <SideBarProvider>
                     <SideBar />
                     <SidebarExpandable />
+                    <Tree />
                   </SideBarProvider>
                   <div className="editor-Area" >
                     <FileSlider />

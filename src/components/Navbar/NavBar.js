@@ -28,7 +28,7 @@ function NavBar() {
 
   const selectFolder = (e) => {
     console.log("Hello")
-
+    
     var files = e.target.files[0];
 
     let cfile = files.webkitRelativePath.replace('/', "\\")

@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(163, 162, 162); 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(122, 122, 122); 
+  }
+body{
+    background: rgb(17, 16, 16);
+}
+
+.canvaOuter{
+    margin-top: 0.3rem;
+    width: 100vw;
+    /* display: flex;
+    justify-content: center; */
+    /* width: 1400px;
+    height: 1200px;*/
+    overflow: auto; 
+    
+}
+canvas{
+    border: 5px solid gray;
+    background: white;
+    box-shadow: 15px 15px 15 rgb(50,50,50);
+    overflow: auto;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    width: 100vw;
+    
+
+}
+
+.screen{
+    margin-top: 1rem;
+    
+}
+.screen *{
+    font-size: 1rem;
+}
+.screen .userInp{
+    border: none;
+    outline: none;
+    width:50vw;
+    height: 2.5rem;
+    padding-left:0.3rem;
+    padding-right: 0.2rem;
+    letter-spacing:0.1em;
+
+}
+.screen .rootInp{
+    border: none;
+    outline: none;
+    margin-left: 1rem;
+    height: 2.5rem;
+    width: 6rem;
+    font-size: 0.7rem;
+    padding-left: 0.2rem;
+}
+.screen .sub{
+    height: 2.5rem;
+    width: 5rem;
+    margin-left: 1rem; 
+}
+.screen .subA{
+    height: 2.5rem;
+    width: 6rem;
+    margin-right: 1rem;
+}
+.screen .subL{
+    height: 2.5rem;
+    width: 6rem;
+    margin-right: 1rem;
+}
+
+
+.button-54 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    border: 3px solid;
+    padding: 0.25em 0.5em;
+    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    position: relative;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+
+}
+.button-54:hover{
+    background: gray;
+}
+
+.icon-wrapper{
+    background-color: rgb(255, 255, 255); 
+    line-height: 50px; 
+    height: 50px; width: 50px; 
+    border-radius: 0%;
+}
+
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
+}

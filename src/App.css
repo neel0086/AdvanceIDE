@@ -18,11 +18,11 @@
 .handleMainUi{
     display: flex;
     flex: 1;
-    width: 100%;
+    width: 100vw;
+    position: relative;
 }
 .editor-Area{
     display: flex;
-    width: 100vh;
     height: inherit;
     flex: 1;
     flex-direction: column;

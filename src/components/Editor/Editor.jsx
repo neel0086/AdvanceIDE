@@ -64,7 +64,7 @@ const Editor = (props) => {
   }
   return (
   <>
-    <Box elevation={3} sx={{ flex: 0.8,height:'86.61vh'}}>
+    <Box elevation={3} sx={{ height:'86.61vh'}}>
       <AceEditor
         mode={languageMode == "python3" || languageMode == "python2" ? "python" : languageMode}
         theme={themeMode}
