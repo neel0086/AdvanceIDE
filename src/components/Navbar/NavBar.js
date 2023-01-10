@@ -27,55 +27,9 @@ function NavBar() {
   }
 
   const selectFolder = (e) => {
-    console.log("Hello")
-    
-    var files = e.target.files[0];
-
-    let cfile = files.webkitRelativePath.replace('/', "\\")
-    let pfiles = files.path.replace(cfile, '') + cfile.split("\\")[0]
-    changeSidebarFolder(pfiles,cfile.split("\\")[0])
-
-
+    setFolderVal(e.target.files[0])
   }
-  const createDirectoryTree = (fileDir,depth) =>{
-    let filenames = fs.readdirSync(fileDir);
-    filenames.forEach((file) => {
-      var stat = fs.lstatSync(fileDir+'\\'+file);
-      if(fileDir in fileFolder){
-        fileFolder[fileDir].push([stat.isFile()?'File':'Folder',fileDir+'\\'+file,file])
-      }
-      else{
-        fileFolder[fileDir]=[]
-      }
-      
-      // console.log(stat)
-      if(stat.isFile()){
-        console.log(fileDir+'\\'+file,depth)
-      }
-      else{
-        createDirectoryTree(fileDir+"\\"+file,depth+1)
-      }
-    });
-    
-  }
-  const changeSidebarFolder = (pfiles,folderName) => {
-    let filenames = fs.readdirSync(pfiles);
-    setFolderVal(folderName.toUpperCase())
-    createDirectoryTree(pfiles,0)
-    console.log(fileFolder)
-    
-    
-
-    // if (pfiles) {
-    //   fs.readFile(pfiles, 'utf8', function (err, data) {
-    //     console.log(data);
-
-    //   })
-    // }
-  }
-
-
-
+  
   return (
     <div className='n-container'>
 

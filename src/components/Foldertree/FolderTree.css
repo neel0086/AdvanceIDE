@@ -3,6 +3,8 @@
     color: white;
     display: flex;
     flex-direction:column;
+    width: inherit;
+    height: inherit;
 }
 .ft-nav{
      margin: 1rem;
@@ -25,9 +27,16 @@
 }
 .treeview ul{
     list-style-type: none;
-    padding: 0;
+    padding: 0px;
+    padding-left: 10px;
 }
 
 .treeview{
     margin-top: 1rem;
+    width: inherit;
+    height: inherit;
+}
+
+#myUL{
+    overflow:scroll ;
 }
