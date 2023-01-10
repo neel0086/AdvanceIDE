@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong|Roboto&display=swap');
 .f-slider{
     display: flex;
-    height: 6.4vh;
+    height: 7%;
     border-top: 1px groove rgb(20, 20, 20);
     background-color: var(--fbar);
     font-size: 1.05rem;
@@ -11,10 +11,10 @@
     /* width: 94.65vw; */
     overflow-x: scroll;
 }
-.f-slider:hover{
+/* .f-slider:hover{
     z-index:1000;
     box-shadow: 1px 1px 6px #888888;
-}
+} */
 
 .f-button{
     cursor: pointer;

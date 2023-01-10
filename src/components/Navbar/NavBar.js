@@ -33,7 +33,7 @@ function NavBar() {
   return (
     <div className='n-container'>
 
-      <AppBar position="static" style={{ backgroundColor: 'rgb(50, 50, 51)',height:'55px' }}>
+      <AppBar position="static" style={{ backgroundColor: 'rgb(50, 50, 51)' }}>
 
         <Toolbar variant="dense" sx={{ width: 'inherit' }}>
 

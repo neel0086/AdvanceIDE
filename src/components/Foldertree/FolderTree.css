@@ -34,9 +34,10 @@
 .treeview{
     margin-top: 1rem;
     width: inherit;
-    height: inherit;
+    height: 100vh;
+    overflow-y:scroll ;
 }
 
 #myUL{
-    overflow:scroll ;
+    
 }

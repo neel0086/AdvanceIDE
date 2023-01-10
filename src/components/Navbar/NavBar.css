@@ -10,6 +10,7 @@
 }
 .n-container{
     width: inherit;
+    /* height: 40%; */
     display: flex;
     z-index: 1000;
 }

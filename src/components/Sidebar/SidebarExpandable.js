@@ -14,8 +14,8 @@ function SidebarExpandable() {
   const {sideBarVal,setSideBarVal}= useContext(SideBarContext)
   const [open, setOpen] = useState(false);
     return (
-        <div className='SidebarExpUi' style={{ flex: `${sideBarVal=="FolderView" ? 0.2 : 0.0}` }}>
-            <div className='s-open'>
+        <div className='SidebarExpUi' style={{ width: `${sideBarVal=="FolderView" ? '20%' : 0.0}` }}>
+            <div className='s-open' style={{width:'100%'}}>
                 <FolderTree />
                 {/* {open ? <img src={Back} onClick={() => setOpen(!open)} />
                     : <></>} */}
