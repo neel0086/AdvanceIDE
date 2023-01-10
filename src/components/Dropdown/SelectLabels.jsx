@@ -37,10 +37,10 @@ export default function SelectLabels() {
   return (
     <>
       {/* Language */}
-      <FormControl sx={{ m: 1, minWidth: 100 }}>
+      <FormControl sx={{ m: 1, minWidth: 100}}>
         <InputLabel id="demo-simple-select-helper-label" >Lang </InputLabel>
         <Select
-          sx={{color:'white',fontSize:'1rem'}}
+          sx={{color:'white',fontSize:'1rem',height:'35px'}}
           
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
@@ -66,7 +66,7 @@ export default function SelectLabels() {
       <FormControl sx={{ m: 1, minWidth: 100, maxWidth: 120 }}>
         <InputLabel id="demo-simple-select-helper-label">Theme</InputLabel>
         <Select
-        sx={{color:'white',fontSize:'1rem'}}
+        sx={{color:'white',fontSize:'1rem',height:'35px'}}
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={themeMode}
@@ -89,10 +89,10 @@ export default function SelectLabels() {
         </Select>
       </FormControl>
 
-      <FormControl sx={{ m: 1, minWidth: 100, maxWidth: 120 }}>
+      <FormControl sx={{ m: 1, minWidth: 100, maxWidth: 120}}>
         <InputLabel id="demo-simple-select-helper-label">Fonts</InputLabel>
         <Select
-        sx={{color:'white',fontSize:'1rem'}}
+        sx={{color:'white',fontSize:'1rem',height:'35px'}}
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={fontVal}

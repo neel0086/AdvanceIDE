@@ -3,11 +3,17 @@
 .f-slider{
     display: flex;
     height: 6.4vh;
+    border-top: 1px groove rgb(20, 20, 20);
     
     background-color: var(--fbar);
     font-size: 1.05rem;
     font-weight: 300;
     font-family: Roboto;
+    /* overflow-x: scroll; */
+}
+.f-slider:hover{
+    z-index:1000;
+    box-shadow: 1px 1px 6px #888888;
 }
 
 .f-button{
@@ -17,7 +23,7 @@
     color: var(--skin);
     outline: none;
     border: none;
-    height: inherit;
+    height: 6.39;
     width: 16.125rem;
     display: flex;
     align-items: center;

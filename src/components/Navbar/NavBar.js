@@ -21,7 +21,8 @@ function NavBar() {
   const {folderVal,setFolderVal} = useContext(FolderContext);
   const fileFolder = {}
   const EditorSpace = (e) => {
-    setFileVal(e.target.files[0])
+    setFileVal({"path":e.target.files[0]["path"],"name":e.target.files[0]["name"]})
+    // setFileVal(e.target.files[0])
     console.log(e.target.files[0])
   }
 
@@ -78,7 +79,7 @@ function NavBar() {
   return (
     <div className='n-container'>
 
-      <AppBar position="static" style={{ backgroundColor: 'rgb(50, 50, 51)' }}>
+      <AppBar position="static" style={{ backgroundColor: 'rgb(50, 50, 51)',height:'55px' }}>
 
         <Toolbar variant="dense" sx={{ width: 'inherit' }}>
 
