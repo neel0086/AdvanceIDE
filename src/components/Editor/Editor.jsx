@@ -89,9 +89,9 @@ const Editor = (props) => {
         }}
       />
     </Box>
-    <Box sx={{height:'2.5vh'}}>
+    {/* <Box sx={{height:'2.5vh'}}>
       <button style={{padding:'1rem'}} onClick={handleSubmit}>Submit</button>
-    </Box>
+    </Box> */}
     </>
   );
 };

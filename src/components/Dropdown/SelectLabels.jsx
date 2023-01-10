@@ -72,7 +72,7 @@ export default function SelectLabels() {
           value={themeMode}
           label="Theme"
           onChange={themeHandleChange}
-          onMouseOver={themeHandleChange}
+          // onMouseOver={themeHandleChange}
         >
           <MenuItem value={"dracula"}>Dracula</MenuItem>
           <MenuItem value={"ambiance"}>Ambiance</MenuItem>

@@ -1,14 +1,47 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext, useEffect } from 'react';
+import { FileContext } from '../../context/FileProvider';
 import './FileSlider.css'
 function FileSlider() {
-    const [filenum, setFilenum] = useState(-1);
-    const setName = (e) => {
-        setFilenum(e.target.id)
-    }
-
+    const [filenum, setFilenum] = useState("");
+    const firstUpdate = useRef(true);
+    const {fileVal,setFileVal}= useContext(FileContext)
     const dragItem = useRef();
     const dragOverItem = useRef();
-    const [list, setList] = useState(['Item1', 'Item2', 'Item3', 'Item4', 'Item5', 'Item6']);
+    const [list, setList] = useState(Array);
+    const checkfilepath =(obj)=>{
+        console.log(list,obj)
+        var f=1
+        list.forEach((key,val)=>{
+            
+            if(key["path"]==obj["path"]) {
+                f=0
+                console.log(key["path"].length,obj["path"].length)
+                return false
+            }
+        })
+        if(!f) return false
+        return true
+    }
+    const setName = (e) => {
+        // setFileVal();
+        setFilenum(e.target.id)
+    }
+    useEffect(()=>{
+        if (firstUpdate.current) {
+            firstUpdate.current = false;
+            return;
+          }
+        let obj = {"path":fileVal['path'],"name":fileVal['name']}
+        var val = checkfilepath(obj)
+        if(val==true){
+            console.log("I am in",val)
+            list.push(obj)
+            setList(list)
+        }
+        
+        setFilenum(fileVal["path"]);
+        console.log(list)
+    },[fileVal])
 
     const dragStart = (e, position) => {
         dragItem.current = position;
@@ -37,17 +70,17 @@ function FileSlider() {
         //     </button>
         <div className='f-slider'>
             {
-                list &&
+                list.length &&
                 list.map((item, index) => (
-                    <div className="f-button" id={index} onClick={(e) => { setName(e); }}
-                        style={{ backgroundColor: `${filenum == index ? '#1E1E1E' : ''}` }}
+                    <div className="f-button" id={item["path"]} onClick={(e) => { setName(e); }}
+                        style={{ backgroundColor: `${filenum == item["path"] ? '#1E1E1E' : ''}` }}
                         onDragStart={(e) => dragStart(e, index)}
                         onDragEnter={(e) => dragEnter(e, index)}
                         onDragEnd={drop}
                         key={index}
                         draggable>
-                        {item}
-                        <span className='cross active' style={{ display: `${filenum == index ? 'block' : 'none'}`}}>x</span>
+                        {item["name"]}
+                        <span className='cross active' style={{ display: `${filenum == item["path"] ? 'block' : 'none'}`}}>x</span>
                         
                     </div>
                 ))}

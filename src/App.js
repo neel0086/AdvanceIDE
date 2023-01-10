@@ -95,30 +95,7 @@ function App() {
       </LanguageProvider>
 
     </div>
-    // <ThemeProvider theme={theme}>
-    // <ResponsiveAppBar setMode={setMode} setLang={setLang} />
-    // <Container maxWidth="lg" style={{ marginBottom: "10px" }}>
-    //     <Grid
-    //       container
-    //       direction="row"
-    //       justifyContent="space-between"
-    //       alignItems="stretch"
-    //     >
-    //       {/* Editor */}
-    //       <Grid item xs={12} style={{ padding: "15px 0" }}>
-    //         <Editor mode={mode} lang={lang} setCode={setCode} />
-    //       </Grid>
-
-    //       {/* Input & Run button */}
-    //       <Input onClick={onClickHandler} forewardedRef={setInput} />
-
-    //       {/* Output */}
-    //       <Grid item xs={12}>
-    //         <Output output={output} />
-    //       </Grid>
-    //     </Grid>
-    // </Container>
-    // </ThemeProvider>
+    
   );
 }
 
