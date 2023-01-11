@@ -5,6 +5,7 @@
     flex-direction:column;
     width: inherit;
     height: inherit;
+    
 }
 .ft-nav{
      margin: 1rem;
@@ -34,10 +35,37 @@
 .treeview{
     margin-top: 1rem;
     width: inherit;
-    height: 100vh;
+    height: 78vh;
+    padding: 10 px 0;
     overflow-y:scroll ;
 }
 
-#myUL{
-    
-}
+
+.caret {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+  }
+  
+  .caret::before {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+  }
+  
+  .caret-down::before {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari */
+    transform: rotate(90deg);  
+  }
+  
+  .nested {
+    display: none;
+  }
+  
+  .active {
+    display: block;
+  }

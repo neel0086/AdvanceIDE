@@ -23,7 +23,7 @@
 }
 .editor-Area{
     display: flex;
-    height: inherit;
+    height: 100%;
     width: 100%;
     flex-direction: column;
 }

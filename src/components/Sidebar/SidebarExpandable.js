@@ -17,8 +17,6 @@ function SidebarExpandable() {
         <div className='SidebarExpUi' style={{ width: `${sideBarVal=="FolderView" ? '20%' : 0.0}` }}>
             <div className='s-open' style={{width:'100%'}}>
                 <FolderTree />
-                {/* {open ? <img src={Back} onClick={() => setOpen(!open)} />
-                    : <></>} */}
 
 
             </div>

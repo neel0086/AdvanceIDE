@@ -79,7 +79,7 @@ function App() {
                   <SideBarProvider>
                     <SideBar />
                     <SidebarExpandable />
-                    {/* <Tree /> */}
+                    <Tree />
                   </SideBarProvider>
                   <div className="editor-Area" >
                     <FileSlider />

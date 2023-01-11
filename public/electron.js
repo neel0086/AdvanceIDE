@@ -1,6 +1,9 @@
 const { app, BrowserWindow, Menu } = require('electron')
 const path = require("path");
 const isDev = require("electron-is-dev");
+const Store = require('electron-store');
+const store = new Store();
+export default store
 // require('@electron/remote/main').initialize()
 // require("@electron/remote/main").enable(webContents)
 // Menu.setApplicationMenu(false)
