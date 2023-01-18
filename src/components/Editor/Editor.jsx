@@ -28,28 +28,29 @@ const Editor = (props) => {
   const OnChangeHandler = (value) => {
     // fs.readdir("", (err, files) => {
     //   if (err)
-    //     console.log(err);
+    //     
     //   else {
-    //     // console.log("Current directory is: "+__dirname)
-    //     // console.log("\nCurrent directory filenames:");
+    //     // 
+    //     // 
     //     files.forEach(file => {
-    //       console.log(file);
+    //       
     //     })
     //   }
     // })
     //   fs.readFile('D:\\SDP\\frontend\\.gitignore', 'utf8', function(err, data){
 
     //     // Display the file content
-    //     console.log(data);
+    //     
     // });
     setCode(value);
   };
 
   useEffect(() => {
-    // console.log(fileVal['path'])
+    // 
+    console.log(fileVal)
     if (fileVal['path']) {
       fs.readFile(fileVal['path'], 'utf8', function (err, data) {
-        console.log(data);
+        
         setCode(data);
       })
     }

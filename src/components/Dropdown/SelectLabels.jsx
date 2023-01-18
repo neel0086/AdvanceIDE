@@ -3,7 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { LanguageContext } from "../../context/LanguageProvider";
 import {ThemeModeContext} from "../../context/ThemeModeProvider";
 import { FontContext } from "../../context/FontProvider";

@@ -27,12 +27,12 @@ function FolderTree() {
                 }
                 // console.log(stat)
                 if (stat.isFile()) {
-                    ulHtml += "<li><span className='caret'>" + file + "</span></li>"
+                    ulHtml += "<li><span className='caret' onclick='eventHandle()'>" + file + "</span></li>"
                     // console.log(fileDir + '\\' + file, depth,ulHtml)
 
                 }
                 else {
-                    ulHtml += "<li><span class='caret'>" + file + "</span><ul className='nested'>" + createDirectoryTree(fileDir + "\\" + file, depth + 1) + "</ul></li>"
+                    ulHtml += "<li><span class='caret' onclick='eventHandle()'>" + file + "</span><ul className='nested'>" + createDirectoryTree(fileDir + "\\" + file, depth + 1) + "</ul></li>"
                     // console.log(createDirectoryTree(fileDir + "\\" + file, depth + 1))
                 }
 
@@ -45,27 +45,37 @@ function FolderTree() {
             let filenames = fs.readdirSync(pfiles);
             setFolderActive(folderName.toUpperCase())
             document.querySelector("#myUL").innerHTML = createDirectoryTree(pfiles, 0, "")
+
             console.log(fileFolder)
         }
-        if (folderVal) {
+
+        const folderView = async () => {
+
             var files = folderVal;
             let cfile = files.webkitRelativePath.replace('/', "\\")
             let pfiles = files.path.replace(cfile, '') + cfile.split("\\")[0]
             changeSidebarFolder(pfiles, cfile.split("\\")[0])
-            var toggler = document.getElementsByClassName("caret");
-            var i;
-            console.log(toggler)
-            for (i = 0; i < toggler.length; i++) {
-                toggler[i].addEventListener("click", function () {
-                    this.parentElement.querySelector(".nested").classList.toggle("active");
-                    this.classList.toggle("caret-down");
-                });
-            }
+
+
 
         }
+        if (folderVal)
+            folderView()
 
 
     }, [folderVal])
+
+    var toggler = document.getElementsByClassName("caret");
+    var i;
+    console.log(toggler)
+    for (i = 0; i < toggler.length; i++) {
+        toggler[i].addEventListener("click", "#myUL", function () {
+
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-down");
+        });
+    }
+
 
 
 

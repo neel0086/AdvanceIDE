@@ -1,27 +1,19 @@
-import {
-  AppBar,
-  IconButton,
-  Toolbar,
-  Typography,
-  Menu,
-  Box
-} from '@mui/material'
-import React, { useContext, useEffect } from 'react'
+import { AppBar, IconButton, Toolbar, Typography, Box } from '@mui/material'
+import React, { useContext, useEffect, useRef } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown';
 import './NavBar.css'
 import Logo from '../../images/logo.png'
 import SelectLabels from '../Dropdown/SelectLabels';
 import { FileContext } from '../../context/FileProvider';
 import { FolderContext } from '../../context/FolderProvider';
-const fs = window.require('fs');
 
 
 function NavBar() {
-  const { fileVal, setFileVal } = useContext(FileContext);
-  const {folderVal,setFolderVal} = useContext(FolderContext);
-  const fileFolder = {}
+  const {  setFileVal } = useContext(FileContext);
+  const { setFolderVal } = useContext(FolderContext);
+
   const EditorSpace = (e) => {
-    setFileVal({"path":e.target.files[0]["path"],"name":e.target.files[0]["name"]})
+    setFileVal({ "path": e.target.files[0]["path"], "name": e.target.files[0]["name"] })
     // setFileVal(e.target.files[0])
     console.log(e.target.files[0])
   }
@@ -29,7 +21,15 @@ function NavBar() {
   const selectFolder = (e) => {
     setFolderVal(e.target.files[0])
   }
-  
+  const firstUpdate = useRef(true)
+
+  if (firstUpdate.current) {
+    if (localStorage.getItem('activeFile') != null && localStorage.getItem('activeFile').length > 0)
+      setFileVal(JSON.parse(localStorage.getItem('activeFile')));
+    firstUpdate.current = false
+  }
+
+
   return (
     <div className='n-container'>
 
@@ -41,7 +41,7 @@ function NavBar() {
             sx={
               { mr: 1 }
             }>
-            <img src={Logo} width="50px" />
+            <img src={Logo} width="50px" alt='' />
           </IconButton>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: 'inherit' }}>
             <Box sx={{ display: 'flex' }}>
