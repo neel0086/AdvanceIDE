@@ -4,16 +4,13 @@ import Box from "@mui/material/Box";
 import "ace-builds";
 import "ace-builds/webpack-resolver";
 import Beautify from "ace-builds/src-noconflict/ext-beautify";
-import CodeLens from "ace-builds/src-noconflict/ext-code_lens";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 import "./acebuilds";
-import langForEditor from "./langForEditor";
 import { LanguageContext } from "../../context/LanguageProvider";
 import { ThemeModeContext } from "../../context/ThemeModeProvider";
 import { FontContext } from "../../context/FontProvider";
 import './Editor.css'
 import { FileContext } from "../../context/FileProvider";
-import { height } from "@mui/system";
 import { getOutput } from "../../services/api";
 const fs = window.require('fs');
 
@@ -45,54 +42,49 @@ const Editor = (props) => {
     setCode(value);
   };
 
+  //SETCODE ON TERMINAL WHENEVER FILE CHANGES
   useEffect(() => {
-    // 
-    console.log(fileVal)
     if (fileVal['path']) {
       fs.readFile(fileVal['path'], 'utf8', function (err, data) {
-        
         setCode(data);
       })
     }
   }, [fileVal])
-
   const OnBlurHandler = () => {
     setCode(code);
   };
 
-  const handleSubmit = () =>{
-    getOutput(code,languageMode);
+  // ON SUBMIT OF CODE
+  const handleSubmit = () => {
+    getOutput(code, languageMode);
   }
   return (
-  <>
-    <Box elevation={3} sx={{ height:'100%'}}>
-      <AceEditor
-        mode={languageMode == "python3" || languageMode == "python2" ? "python" : languageMode}
-        theme={themeMode}
-        onChange={OnChangeHandler}
-        onBlur={OnBlurHandler}
-        commands={Beautify.commands}
-        name="ace-editor"
-        value={code}
-        editorProps={{ $blockScrolling: true }}
-        style={{ width: "100%",height:'inherit' }}
-        setOptions={{
-          enableBasicAutocompletion: true,
-          enableLiveAutocompletion: true,
-          enableSnippets: true,
-          showLineNumbers: true,
-          highlightActiveLine: true,
-          showGutter: true,
-          autoScrollEditorIntoView: true,
-          showPrintMargin: false,
-          fontSize: `${fontVal}`,
-          fontFamily: "Consolas, 'Courier New', monospace",
-        }}
-      />
-    </Box>
-    {/* <Box sx={{height:'2.5vh'}}>
-      <button style={{padding:'1rem'}} onClick={handleSubmit}>Submit</button>
-    </Box> */}
+    <>
+      <Box elevation={3} sx={{ height: '100%' }}>
+        <AceEditor
+          mode={languageMode == "python3" || languageMode == "python2" ? "python" : languageMode}
+          theme={themeMode}
+          onChange={OnChangeHandler}
+          onBlur={OnBlurHandler}
+          commands={Beautify.commands}
+          name="ace-editor"
+          value={code}
+          editorProps={{ $blockScrolling: true }}
+          style={{ width: "100%", height: 'inherit' }}
+          setOptions={{
+            enableBasicAutocompletion: true,
+            enableLiveAutocompletion: true,
+            enableSnippets: true,
+            showLineNumbers: true,
+            highlightActiveLine: true,
+            showGutter: true,
+            autoScrollEditorIntoView: true,
+            showPrintMargin: false,
+            fontSize: `${fontVal}`,
+            fontFamily: "Consolas, 'Courier New', monospace",
+          }}
+        />
+      </Box>
     </>
   );
 };

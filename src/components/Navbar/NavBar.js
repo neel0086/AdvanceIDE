@@ -12,23 +12,16 @@ function NavBar() {
   const {  setFileVal } = useContext(FileContext);
   const { setFolderVal } = useContext(FolderContext);
 
+  //TRIGGER A EVENT FILE ADDITION 
   const EditorSpace = (e) => {
     setFileVal({ "path": e.target.files[0]["path"], "name": e.target.files[0]["name"] })
-    // setFileVal(e.target.files[0])
-    console.log(e.target.files[0])
   }
 
+  //TRIGGER A EVENT FOR FOLDER CHANGE
   const selectFolder = (e) => {
     setFolderVal(e.target.files[0])
   }
-  const firstUpdate = useRef(true)
-
-  if (firstUpdate.current) {
-    if (localStorage.getItem('activeFile') != null && localStorage.getItem('activeFile').length > 0)
-      setFileVal(JSON.parse(localStorage.getItem('activeFile')));
-    firstUpdate.current = false
-  }
-
+  
 
   return (
     <div className='n-container'>

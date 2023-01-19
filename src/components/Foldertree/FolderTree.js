@@ -5,15 +5,11 @@ import FolderIcon from '../../images/folder.png'
 const fs = window.require('fs');
 function FolderTree() {
     const [folderActive, setFolderActive] = useState("");
-    const { folderVal, setFolderVal } = useContext(FolderContext);
+    const { folderVal } = useContext(FolderContext);
 
     useEffect(() => {
 
         const fileFolder = {}
-
-
-
-
         const createDirectoryTree = (fileDir, depth) => {
             let filenames = fs.readdirSync(fileDir);
             var ulHtml = ""
@@ -25,61 +21,45 @@ function FolderTree() {
                 else {
                     fileFolder[fileDir] = []
                 }
-                // console.log(stat)
                 if (stat.isFile()) {
                     ulHtml += "<li><span className='caret' onclick='eventHandle()'>" + file + "</span></li>"
-                    // console.log(fileDir + '\\' + file, depth,ulHtml)
-
                 }
                 else {
                     ulHtml += "<li><span class='caret' onclick='eventHandle()'>" + file + "</span><ul className='nested'>" + createDirectoryTree(fileDir + "\\" + file, depth + 1) + "</ul></li>"
-                    // console.log(createDirectoryTree(fileDir + "\\" + file, depth + 1))
                 }
-
-
             });
             return ulHtml
-
         }
+
+        // RESPOND TO CHANGE IN SIDEBAR FOLDER
         const changeSidebarFolder = (pfiles, folderName) => {
             let filenames = fs.readdirSync(pfiles);
             setFolderActive(folderName.toUpperCase())
             document.querySelector("#myUL").innerHTML = createDirectoryTree(pfiles, 0, "")
-
-            console.log(fileFolder)
         }
 
+        //CONTROLLING FOLDER VIEW (IN PROCESS)
         const folderView = async () => {
-
             var files = folderVal;
             let cfile = files.webkitRelativePath.replace('/', "\\")
             let pfiles = files.path.replace(cfile, '') + cfile.split("\\")[0]
             changeSidebarFolder(pfiles, cfile.split("\\")[0])
-
-
-
         }
         if (folderVal)
             folderView()
-
-
     }, [folderVal])
 
     var toggler = document.getElementsByClassName("caret");
     var i;
-    console.log(toggler)
+
     for (i = 0; i < toggler.length; i++) {
         toggler[i].addEventListener("click", "#myUL", function () {
-
             this.parentElement.querySelector(".nested").classList.toggle("active");
             this.classList.toggle("caret-down");
         });
     }
 
-
-
-
-
+    // HTML SCRIPTS STARTS
     return (
         <div className='ft-container'>
             <div className='ft-nav'>

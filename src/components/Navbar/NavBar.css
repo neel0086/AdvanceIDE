@@ -5,8 +5,13 @@
     background-color: inherit;
     outline: none;
     border: none;
+    font-family: Roboto;
+    font-size: 17px;
     /* padding-left: 0; */
     /* margin-left: 0; */
+}
+#dropdown-basic:hover{
+    background-color: rgba(35, 34, 34, 0.707);
 }
 .n-container{
     width: inherit;

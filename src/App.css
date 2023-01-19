@@ -3,7 +3,7 @@
     margin: 0;
     box-sizing: border-box;
 }
-
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong|Roboto&display=swap');
 :root {
     --white:#ffffff;
     --skin:#e2c08d;

@@ -1,32 +1,50 @@
-// import react from "react";
+import { useContext, useRef, useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useContext, useState } from "react";
 import { LanguageContext } from "../../context/LanguageProvider";
-import {ThemeModeContext} from "../../context/ThemeModeProvider";
+import { ThemeModeContext } from "../../context/ThemeModeProvider";
 import { FontContext } from "../../context/FontProvider";
 
 export default function SelectLabels() {
-  const {languageMode,setLanguageMode} = useContext(LanguageContext)
-  const {themeMode,setThemeMode} = useContext(ThemeModeContext)
-  const [lang,setLang] = useState("Python3")
-  const [theme,setTheme] = useState("Dracula")
-  const {fontVal,setFontVal} = useContext(FontContext)
 
+  // USESTATE
+  const [lang, setLang] = useState("Python3")
+  const [theme, setTheme] = useState("Dracula")
+
+  //CONTEXT PROVIDERS
+  const { languageMode, setLanguageMode } = useContext(LanguageContext)
+  const { themeMode, setThemeMode } = useContext(ThemeModeContext)
+  const { fontVal, setFontVal } = useContext(FontContext)
+
+  //HANDLE THE LANGUAGE CHANGE
   const langHandleChange = (event) => {
     setLanguageMode(event.target.value);
     setLang(event.target.value)
   };
 
+  //HANDLE THEME CHANGE
   const themeHandleChange = (event) => {
+    localStorage.setItem('theme', JSON.stringify(event.target.value))
     setThemeMode(event.target.value)
     setTheme(event.target.value);
   };
 
-  const FontHandleChange = (event) =>{
+  //HANDLE FONT CHANGE
+  const FontHandleChange = (event) => {
+    localStorage.setItem('fontSize', JSON.stringify(event.target.value))
     setFontVal(event.target.value)
+  }
+
+  //HANDLE REGAINING OF USER STATE THORUGH LOCALSTORAGE
+  const themeFirstUpdate = useRef(true)
+  if (themeFirstUpdate.current) {
+    if (localStorage.getItem('theme') != null)
+      setThemeMode(JSON.parse(localStorage.getItem('theme')))
+    if (localStorage.getItem('fontSize') != null)
+      setFontVal(JSON.parse(localStorage.getItem('fontSize')))
+    themeFirstUpdate.current = false
   }
 
   // useEffect(() => {
@@ -36,12 +54,12 @@ export default function SelectLabels() {
 
   return (
     <>
-      {/* Language */}
-      <FormControl sx={{ m: 1, minWidth: 100}}>
+      {/* LANGAUGE CONTROLLER */}
+      <FormControl sx={{ m: 1, minWidth: 100 }}>
         <InputLabel id="demo-simple-select-helper-label" >Lang </InputLabel>
         <Select
-          sx={{color:'white',fontSize:'1rem',height:'35px'}}
-          
+          sx={{ color: 'white', fontSize: '1rem', height: '35px' }}
+
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={languageMode}
@@ -62,17 +80,17 @@ export default function SelectLabels() {
         </Select>
       </FormControl>
 
-      {/* Theme */}
+      {/* THEME CONTROLLER*/}
       <FormControl sx={{ m: 1, minWidth: 100, maxWidth: 120 }}>
         <InputLabel id="demo-simple-select-helper-label">Theme</InputLabel>
         <Select
-        sx={{color:'white',fontSize:'1rem',height:'35px'}}
+          sx={{ color: 'white', fontSize: '1rem', height: '35px' }}
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={themeMode}
           label="Theme"
           onChange={themeHandleChange}
-          // onMouseOver={themeHandleChange}
+        // onMouseOver={themeHandleChange}
         >
           <MenuItem value={"dracula"}>Dracula</MenuItem>
           <MenuItem value={"ambiance"}>Ambiance</MenuItem>
@@ -85,14 +103,14 @@ export default function SelectLabels() {
           <MenuItem value={"gob"}>GOB</MenuItem>
           <MenuItem value={"terminal"}>Terminal</MenuItem>
           <MenuItem value={"tomorrow_night"}>tomorrow_night</MenuItem>
-
         </Select>
       </FormControl>
 
-      <FormControl sx={{ m: 1, minWidth: 100, maxWidth: 120}}>
+      {/* FONT CONTROLLER*/}
+      <FormControl sx={{ m: 1, minWidth: 100, maxWidth: 120 }}>
         <InputLabel id="demo-simple-select-helper-label">Fonts</InputLabel>
         <Select
-        sx={{color:'white',fontSize:'1rem',height:'35px'}}
+          sx={{ color: 'white', fontSize: '1rem', height: '35px' }}
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
           value={fontVal}
@@ -109,7 +127,6 @@ export default function SelectLabels() {
           <MenuItem value={"24px"}>24</MenuItem>
           <MenuItem value={"26px"}>26</MenuItem>
           <MenuItem value={"28px"}>28</MenuItem>
-          
           <MenuItem value={"30px"}>30</MenuItem>
           <MenuItem value={"32px"}>32</MenuItem>
         </Select>

@@ -18,7 +18,6 @@
 
 .f-button{
     cursor: pointer;
-    background: var(--sidebarDark);
     background-color: var(--fbutton);
     color: var(--skin);
     outline: none;

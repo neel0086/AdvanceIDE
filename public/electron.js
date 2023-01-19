@@ -10,6 +10,7 @@ function createWindow() {
     width: '100%',
     height: '100%',
     title:"Turbine",
+    frame: false,
     // target:'node',
     webPreferences: {
       nodeIntegration: true,
