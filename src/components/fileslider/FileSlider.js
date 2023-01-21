@@ -46,6 +46,8 @@ function FileSlider() {
                 }
             }
             setFileVal(list.length >= 0 ? list[0] : null)
+            localStorage.setItem('activeFile', JSON.stringify(list[0]));
+            
             localStorage.setItem('items', JSON.stringify(list));
         }
         else {

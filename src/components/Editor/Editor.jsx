@@ -12,7 +12,11 @@ import { FontContext } from "../../context/FontProvider";
 import './Editor.css'
 import { FileContext } from "../../context/FileProvider";
 import { getOutput } from "../../services/api";
+import { CodeContext } from "../../context/CodeProvider";
+import runCpp from "./run";
+// import { TRUE } from "node-sass";
 const fs = window.require('fs');
+const ipcRenderer = window.require('electron')
 
 
 const Editor = (props) => {
@@ -21,8 +25,9 @@ const Editor = (props) => {
   const { themeMode, setThemeMode } = useContext(ThemeModeContext)
   const { fontVal, setFontVal } = useContext(FontContext)
   const { fileVal, setFileVal } = useContext(FileContext);
-
+  const { codeVal, setCodeVal } = useContext(CodeContext)
   const OnChangeHandler = (value) => {
+    console.log(value)
     // fs.readdir("", (err, files) => {
     //   if (err)
     //     
@@ -39,24 +44,31 @@ const Editor = (props) => {
     //     // Display the file content
     //     
     // });
-    setCode(value);
+    setCodeVal(value);
   };
 
   //SETCODE ON TERMINAL WHENEVER FILE CHANGES
   useEffect(() => {
     if (fileVal['path']) {
       fs.readFile(fileVal['path'], 'utf8', function (err, data) {
-        setCode(data);
+        setCodeVal(data);
       })
     }
   }, [fileVal])
   const OnBlurHandler = () => {
-    setCode(code);
+    setCodeVal(codeVal);
   };
 
   // ON SUBMIT OF CODE
-  const handleSubmit = () => {
-    getOutput(code, languageMode);
+  const handleSubmit = async () => {
+
+    // Synchronous message emmiter and handler
+    //  console.log(ipcRenderer.sendSync('synchronous-message', 'sync ping')) 
+    try {
+      const output = await runCpp(fileVal['path'])
+      console.log(output)
+    }
+    catch (e) {console.log(e) }
   }
   return (
     <>
@@ -68,7 +80,7 @@ const Editor = (props) => {
           onBlur={OnBlurHandler}
           commands={Beautify.commands}
           name="ace-editor"
-          value={code}
+          value={codeVal}
           editorProps={{ $blockScrolling: true }}
           style={{ width: "100%", height: 'inherit' }}
           setOptions={{
@@ -85,6 +97,7 @@ const Editor = (props) => {
           }}
         />
       </Box>
+      <button onClick={handleSubmit}>Submit</button>
     </>
   );
 };

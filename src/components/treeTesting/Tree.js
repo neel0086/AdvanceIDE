@@ -8,12 +8,8 @@ function Tree() {
   const { sideBarVal, setSideBarVal } = useContext(SideBarContext)
   let nodes = [], levelOrder = [], adj = {}, pos = {}
   let n, root;
-  const firstUpdate = useRef(true);
-  useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      return;
-    }
+
+  React.useEffect(() => {
     let canvas = document.querySelector('#draw');
     let ctx = canvas.getContext('2d')
     let width, height, r = 20, deltaX = r / 2, deltaY = -r / 4, dx = 300, dy = 70, nodeSpace = 2.5
@@ -21,26 +17,8 @@ function Tree() {
 
     let canvaOut = document.querySelector(".canvaOuter")
     console.log(canvaOut)
-
-    if (sideBarVal == "TreeView") {
-      console.log(99)
-      start();
-      canvasSetter();
-    }
-    else {
-      // console.log
-      destroy(1)
-    }
-    function destroy(flag) {
-
-      width = 0
-      height = 0
-      canvas.width = 0
-      canvas.height = 0
-      canvaOut.style.width = 0 + "px"
-      canvaOut.style.height = 0 + "px"
-
-    }
+    window.addEventListener('load', start);
+    window.addEventListener('resize', canvasSetter);
 
 
     function canvasSetter(flag) {
@@ -134,7 +112,7 @@ function Tree() {
         let wd = ctx.measureText(typeof i == 'undefined' ? 'L' : i).width;
         ctx.beginPath();
         ctx.arc(pos[i][0], pos[i][1], r, 0, 2 * Math.PI);
-        ctx.fillStyle = "#a6a6a6";
+        ctx.fillStyle = "grey";
         ctx.fill();
         ctx.fillStyle = "black";
         ctx.font = '16px arial';
@@ -145,7 +123,7 @@ function Tree() {
       nodes.forEach(i => {
         ctx.beginPath();
         ctx.lineWidth = 2.5;
-        ctx.strokeStyle = "#664400"
+        ctx.strokeStyle = "black"
         if (i in adj && adj[i].length == 2) {
           ctx.moveTo(pos[i][0] - r / 2 - deltaX, pos[i][1] + r / 2 + deltaY);
           ctx.lineTo(pos[adj[i][0]][0] + r / 2 + deltaX, pos[adj[i][0]][1] - r / 2 - deltaY);
@@ -242,18 +220,16 @@ function Tree() {
 
     }
     try {
-      if (levelView && sideBarVal == "TreeView")
+      if (levelView)
         start()
-      else {
-        if (sideBarVal == "TreeView")
-          startadj(inpArray)
-      }
+      else
+        startadj(inpArray)
     }
     catch (e) {
       console.log(e)
     }
 
-  }, [inpArray, levelView, InpRoot, sideBarVal]);
+  }, [inpArray, levelView, InpRoot]);
 
 
   function realtime(e) {
@@ -265,7 +241,7 @@ function Tree() {
   }
 
   return (
-    <div className="treevis" style={{ width: `${sideBarVal == "TreeView" ? '100%' : 0}` }}>
+    <div className="treevis" style={{ display: `${sideBarVal == "TreeView" ? 'block' : 'none'}` }}>
       <div className="container" >
         <div className="canvaOuter">
           <canvas id='draw' >

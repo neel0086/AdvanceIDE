@@ -6,12 +6,14 @@ import Logo from '../../images/logo.png'
 import SelectLabels from '../Dropdown/SelectLabels';
 import { FileContext } from '../../context/FileProvider';
 import { FolderContext } from '../../context/FolderProvider';
+import { CodeContext } from '../../context/CodeProvider';
 
 
 function NavBar() {
-  const {  setFileVal } = useContext(FileContext);
+  const { fileVal,setFileVal } = useContext(FileContext);
   const { setFolderVal } = useContext(FolderContext);
-
+  const {codeVal,setCodeVal} = useContext(CodeContext)
+  const fs = window.require('fs')
   //TRIGGER A EVENT FILE ADDITION 
   const EditorSpace = (e) => {
     setFileVal({ "path": e.target.files[0]["path"], "name": e.target.files[0]["name"] })
@@ -21,7 +23,24 @@ function NavBar() {
   const selectFolder = (e) => {
     setFolderVal(e.target.files[0])
   }
-  
+
+  const SaveFile = () => {
+    if (fs.existsSync(fileVal['path'])) {
+      console.log(codeVal,fileVal)
+      fs.writeFile(fileVal['path'],codeVal,(err)=>{
+        if(err){
+          console.log(err)
+        }
+        else{
+          console.log("Sucess");
+        }
+      })
+    }
+  }
+
+  const SaveAsFile = () =>{
+    
+  }
 
   return (
     <div className='n-container'>
@@ -68,7 +87,14 @@ function NavBar() {
                         id="folder"
                         style={{ display: "none" }}
                         onChange={selectFolder} /></Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Save As</Dropdown.Item>
+
+                    <Dropdown.Item href="#/action-2">
+                      <label onClick={SaveFile}>Save</label>
+                    </Dropdown.Item>
+
+                    <Dropdown.Item href="#/action-3">
+                      <label onClick={{SaveAsFile}}>Save As</label>
+                      </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Typography>

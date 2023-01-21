@@ -1,6 +1,7 @@
 const { app, BrowserWindow, Menu } = require('electron')
 const path = require("path");
 const isDev = require("electron-is-dev");
+const {ipcMain} = require('electron')
 // require('@electron/remote/main').initialize()
 // require("@electron/remote/main").enable(webContents)
 // Menu.setApplicationMenu(false)
@@ -38,3 +39,10 @@ app.on("activate", () => {
     createWindow();
   }
 });
+
+// ipcMain.on('synchronous-message', (event, arg) => {
+//   console.log(arg) 
+
+//   // Synchronous event emmision
+//   event.returnValue = 'sync pong'
+// })

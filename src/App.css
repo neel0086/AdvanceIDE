@@ -11,6 +11,11 @@
     --navbarDark : rgb(50, 50, 51);
     --sidebarDark : rgb(51, 51, 51);
     --sidebarOpen:rgba(37,37,38,1);
+    --fontChangeBack:#414141;
+    --modalColor:#000000e6;
+    background-color: rgba(35, 34, 34, 0.707);
+    --hoverColor:rgba(35, 34, 34, 0.707);
+    
     --fbar:#252526;
     --fbutton:#2D2D2D;
     --fbuttonDark:#1E1E1E;

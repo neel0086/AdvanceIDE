@@ -19,7 +19,7 @@
     display: flex;
     z-index: 1000;
 }
-input label{
+label{
     cursor: pointer;
     width: inherit;
     height: inherit;

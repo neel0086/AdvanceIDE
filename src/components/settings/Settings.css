@@ -1,0 +1,75 @@
+.m-sidebar {
+    display: flex;
+    flex-direction: row;
+    min-height: 70vh;
+    /* min-width: 80vw; */
+}
+
+.modal-content {
+    background: var(--modalColor)
+
+}
+
+.m-options {
+    flex: 0.2;
+    padding-left: 5px;
+    border-right: 1px solid black;
+    color: var(--white);
+}
+
+.m-prefernce {
+    padding: 2px 12px;
+    flex: 0.8;
+   
+}
+
+.m-options p {
+    font-size: 20px;
+    padding: 5px;
+}
+.m-options p:hover{
+    cursor: pointer;
+    background-color: var(--hoverColor);
+    border-radius: 10px;
+    
+}
+
+.m-header {
+    font-family: Roboto;
+    font-size: 20px;
+    color: var(--white);
+}
+
+.m-header img {
+    margin-right: 8px;
+}
+
+/* Font and Styles */
+.f-row{
+    margin-bottom: 2rem;
+}
+.f-row input{
+    margin:auto;
+    float:right;
+}
+.sub-name{
+    font-size: 18px;
+    font-family: Roboto;
+    color: var(--white);
+}
+.font_size input{
+    border: none;
+    outline: none;
+    width: 50%;
+    border-radius:3px;
+    background-color: var(--fontChangeBack);
+    color: var(--white);
+}
+.font_family input{
+    border: none;
+    outline: none;
+    width: 50%;
+    border-radius:3px;
+    background-color: var(--fontChangeBack);
+    color: var(--white);
+}

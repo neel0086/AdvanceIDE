@@ -14,7 +14,7 @@ function SidebarExpandable() {
   const {sideBarVal,setSideBarVal}= useContext(SideBarContext)
   const [open, setOpen] = useState(false);
     return (
-        <div className='SidebarExpUi' style={{ width: `${sideBarVal=="FolderView" ? '20%' : 0.0}` }}>
+        <div className='SidebarExpUi' style={{ display: `${sideBarVal == "FolderView" ? 'block' : 'none'}` ,width:'20%'}} >
             <div className='s-open' style={{width:'100%'}}>
                 <FolderTree />
 

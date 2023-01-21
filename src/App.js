@@ -11,6 +11,8 @@ import SidebarExpandable from "./components/Sidebar/SidebarExpandable";
 import SideBarProvider from "./context/SideBarProvider";
 import FolderProvider from "./context/FolderProvider";
 import Tree from "./components/treeTesting/Tree";
+import Settings from "./components/settings/Settings";
+import CodeProvider from "./context/CodeProvider";
 
 
 function App() {
@@ -55,22 +57,26 @@ function App() {
           <FontProvider>
             <FileProvider>
               <FolderProvider>
-                <NavBar />
-                <div className="handleMainUi">
-                  <SideBarProvider>
-                    <SideBar />
-                    <SidebarExpandable />
-                    <Tree />
-                  </SideBarProvider>
-                  <div className="editor-Area" >
-                    <FileSlider />
-                    <Editor />
-                    {/* <InputOuput /> */}
+                <CodeProvider>
+                  <NavBar />
+                  
+                  <div className="handleMainUi">
+                    <SideBarProvider>
+                      <SideBar />
+                      <SidebarExpandable />
+                      <Tree /><Settings />
+                      
+                    </SideBarProvider>
+                    <div className="editor-Area" >
+                      <FileSlider />
+                      <Editor />
+                      {/* <InputOuput /> */}
+                    </div>
+
                   </div>
 
-                </div>
-
-                {/* <Editor mode={mode} lang={lang} setCode={setCode} /> */}
+                  {/* <Editor mode={mode} lang={lang} setCode={setCode} /> */}
+                </CodeProvider>
               </FolderProvider>
             </FileProvider>
           </FontProvider>
@@ -78,7 +84,7 @@ function App() {
       </LanguageProvider>
 
     </div>
-    
+
   );
 }
 

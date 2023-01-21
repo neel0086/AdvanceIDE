@@ -36,8 +36,8 @@ body{
     
 }
 canvas{
-    border: 5px solid gray;
-    background: white;
+    /* border: 5px solid gray; */
+    background: inherit;
     box-shadow: 15px 15px 15 rgb(50,50,50);
     overflow: auto;
 }
