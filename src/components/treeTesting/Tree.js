@@ -1,4 +1,6 @@
+import { Typography } from "@mui/material";
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { Dropdown } from "react-bootstrap";
 import { SideBarContext } from "../../context/SideBarProvider";
 import './style.css'
 function Tree() {
@@ -240,29 +242,94 @@ function Tree() {
       setInpArray(s.substring(2, s.length - 2))
   }
 
+  useEffect(() => {
+    const divEl = document.querySelector('.treevis');
+
+
+    let cflag, dflag = false, temp;
+    const lastPoint = { x: null, y: null }
+    divEl.addEventListener('mousedown', (e) => {
+      // console.log("Mosedrag")
+      let temp1 = e.clientX
+      console.log(temp1)
+      temp = temp1
+      var rect = e.target.getBoundingClientRect();
+      var x = e.clientX - rect.left; //x position within the element.
+      if (divEl.offsetWidth - 15 <= x) {
+        document.body.setAttribute('style', 'cursor:e-resize !important');
+        // document.body.style.cursor = "e-resize";
+        console.log(99)
+        dflag = true
+      }
+    })
+    document.body.addEventListener('mouseup', (e) => {
+      e.preventDefault()
+      console.log(cflag)
+      if (dflag) {
+        document.body.setAttribute('style', 'cursor:default !important');
+        dflag = false
+
+      }
+    })
+    window.addEventListener('mousemove', (e) => {
+      console.log("moving")
+
+      if (dflag) {
+        // window.style.cursor = "grabbing"
+        temp = temp + (e.clientX > lastPoint.x ? e.clientX - lastPoint.x : e.clientX < lastPoint.x ? e.clientX - lastPoint.x : 0)
+        divEl.style.width = temp + "px"
+        // console.log(temp + "%")
+        // temp += 1
+
+      }
+      lastPoint.x = e.clientX
+      lastPoint.y = e.clientY
+    });
+
+
+  }, [])
+  useEffect(() => {
+    const divEl = document.querySelector('.treevis');
+    if (sideBarVal == "FolderView") {
+      divEl.style.width = "100%"
+    }
+  }, [sideBarVal])
+
   return (
-    <div className="treevis" style={{ display: `${sideBarVal == "TreeView" ? 'block' : 'none'}` }}>
-      <div className="container" >
+    <div className="treevis" style={{ display: `${sideBarVal == "TreeView" ? 'block' : 'none'}`, width: '100%' }}>
+      <div className="h-container" >
         <div className="canvaOuter">
           <canvas id='draw' >
           </canvas>
         </div>
         <div className="screen">
-          <button
-            className="subA"
-            onClick={() => setLevelView(false)}
-            style={{ backgroundColor: levelView ? "white" : "#cecece" }}
+          <div style={{marginRight:'1rem'}}>
+            <Dropdown style={{height:'100%'}}>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                Input-Type
+              </Dropdown.Toggle>
 
-          >
-            EdgeList
-          </button>
-          <button
-            className="subL"
-            onClick={() => { setLevelView(true); console.log(levelView) }}
-            style={{ backgroundColor: levelView ? "#cecece" : "white " }}
-          >
-            LevelOrder
-          </button>
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1"
+                  
+                    // className="subA"
+                    onClick={() => setLevelView(false)}
+                    style={{ backgroundColor: levelView ? "white" : "#cecece" }}
+                  >
+                    Edge List
+                </Dropdown.Item>
+                <Dropdown.Item href="#/action-2"
+                    // className="subL"
+                    onClick={() => { setLevelView(true); console.log(levelView) }}
+                    style={{ backgroundColor: levelView ? "#cecece" : "white " }}
+                  >
+                    LevelOrder
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </div>
+
+
           <input
             type="text"
             className="userInp"

@@ -17,14 +17,13 @@ export default function SideBar() {
   useEffect(() => {
     if (firstUpdate.current) {
       setSideBarVal(JSON.parse(localStorage.getItem('sidebar')));
-      firstUpdate.current=false
+      firstUpdate.current = false
     }
-    else{
+    else {
       localStorage.setItem('sidebar', JSON.stringify(sideBarVal));
     }
   }, [sideBarVal])
-
-
+  
 
   return (
     <div className='SidebarUi' >

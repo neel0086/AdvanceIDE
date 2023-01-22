@@ -27,7 +27,7 @@ body{
 
 .canvaOuter{
     margin-top: 0.3rem;
-    width: 100vw;
+    width: 100%;
     /* display: flex;
     justify-content: center; */
     /* width: 1400px;
@@ -41,25 +41,38 @@ canvas{
     box-shadow: 15px 15px 15 rgb(50,50,50);
     overflow: auto;
 }
-.container{
+.h-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 90vh;
-    width: 100vw;
+    width: 100%;
     
 
 }
 .treevis{
     flex-direction: row;
     background-color: var(--sidebarOpen);
+    width: 100%;
+    position: relative;
 }
 
 .screen{
-    margin-top: 1rem;
     width: 100%;
-    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.screen #dropdown-basic{
+    border: 2px outset black;
+    border-radius: 0;
+    background:var(--black);
+    /* margin: 1rem; */
+    /* width: 3rem; */
+}
+.screen #dropdown-basic:hover{
+    filter: invert(0.05);
 }
 /* .screen *{
     font-size: 1rem;
@@ -69,9 +82,9 @@ canvas{
     outline: none;
     width:70%;
     height: 2.5rem;
-    padding-left:0.3rem;
-    padding-right: 0.2rem;
     letter-spacing:0.1em;
+    color:var(--white);
+    background: var(--black);
 
 }
 .screen .rootInp{
@@ -80,8 +93,12 @@ canvas{
     margin-left: 1rem;
     height: 2.5rem;
     width: 10%;
-    font-size: 0.7rem;
-    padding-left: 0.2rem;
+    color:var(--white);
+    background: var(--black);
+}
+.screen .rootInp,.screen #dropdown-basic,.screen .userInp{
+    font-size: 1.1em;
+    padding: 4px 5px;
 }
 
 .screen .subA{

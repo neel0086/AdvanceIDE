@@ -17,7 +17,7 @@ const runCpp = (filepath) => {
   const outputPath = path.join(filepath.substring(0,filepath.lastIndexOf("\\") + 1), `${jobId}.out`)
   return new Promise((resolve, reject) => {
     exec(
-      `cd ${directoryName} && g++ ${filepath} -o ${jobId}.out && ${jobId}.out && 5`,
+      `cd ${directoryName} && g++ ${filepath} -o ${jobId}.out && ${jobId}.out <input.txt> output.txt`,
 
       (error, stdout, stderr) => {
         error && reject({ error, stderr });

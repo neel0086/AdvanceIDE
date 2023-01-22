@@ -1,0 +1,16 @@
+.inp_out{
+    display: flex;
+}
+.io-input{
+    height: 100%;
+    width: 50%;
+    border-right: 1px outset black;
+}
+.io-input textarea{
+    resize: horizontal;
+    background: inherit;
+    padding:5px 10px
+}
+.io-output{
+    height: 100%;
+}

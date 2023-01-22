@@ -6,6 +6,7 @@
 @import url('https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong|Roboto&display=swap');
 :root {
     --white:#ffffff;
+    --black:#000000;
     --skin:#e2c08d;
     --green:rgb(155, 255, 116);
     --navbarDark : rgb(50, 50, 51);
@@ -33,6 +34,7 @@
     flex-direction: column;
 }
 .App{
+    position: fixed;
     display: flex;
     flex-direction: column;
     height: 100vh;

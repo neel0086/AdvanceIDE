@@ -1,3 +1,4 @@
+
 import React, { useContext, useEffect, useState } from "react";
 import AceEditor from "react-ace";
 import Box from "@mui/material/Box";
@@ -71,7 +72,7 @@ const Editor = (props) => {
     catch (e) {console.log(e) }
   }
   return (
-    <>
+    <div style={{height:'100%'}}>
       <Box elevation={3} sx={{ height: '100%' }}>
         <AceEditor
           mode={languageMode == "python3" || languageMode == "python2" ? "python" : languageMode}
@@ -82,7 +83,7 @@ const Editor = (props) => {
           name="ace-editor"
           value={codeVal}
           editorProps={{ $blockScrolling: true }}
-          style={{ width: "100%", height: 'inherit' }}
+          style={{ width: "100%", height: '100%' }}
           setOptions={{
             enableBasicAutocompletion: true,
             enableLiveAutocompletion: true,
@@ -97,8 +98,8 @@ const Editor = (props) => {
           }}
         />
       </Box>
-      <button onClick={handleSubmit}>Submit</button>
-    </>
+      {/* <button onClick={handleSubmit}>Submit</button> */}
+    </div>
   );
 };
 

@@ -13,6 +13,7 @@ import FolderProvider from "./context/FolderProvider";
 import Tree from "./components/treeTesting/Tree";
 import Settings from "./components/settings/Settings";
 import CodeProvider from "./context/CodeProvider";
+import InputOutput from "./components/Input/InputOutput";
 
 
 function App() {
@@ -58,24 +59,27 @@ function App() {
             <FileProvider>
               <FolderProvider>
                 <CodeProvider>
-                  <NavBar />
-                  
-                  <div className="handleMainUi">
-                    <SideBarProvider>
+                  <SideBarProvider>
+                    <NavBar />
+
+                    <div className="handleMainUi">
+
                       <SideBar />
-                      <SidebarExpandable />
-                      <Tree /><Settings />
-                      
-                    </SideBarProvider>
-                    <div className="editor-Area" >
-                      <FileSlider />
-                      <Editor />
-                      {/* <InputOuput /> */}
+                      <div style={{ width: '100%' ,display:'flex'}}>
+                        <SidebarExpandable />
+                        <Tree /><Settings />
+
+
+                        <div className="editor-Area" >
+                          <FileSlider />
+                          <Editor />
+                          {/* <InputOutput /> */}
+                        </div>
+                      </div>
                     </div>
 
-                  </div>
-
-                  {/* <Editor mode={mode} lang={lang} setCode={setCode} /> */}
+                    {/* <Editor mode={mode} lang={lang} setCode={setCode} /> */}
+                  </SideBarProvider>
                 </CodeProvider>
               </FolderProvider>
             </FileProvider>
