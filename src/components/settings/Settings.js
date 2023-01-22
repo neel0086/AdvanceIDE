@@ -29,20 +29,15 @@ function Settings() {
     return (
 
         <div>
-
-            {/* <Button className="add" onClick={openModal} variant="outline-dark ">
-                <i className="fas fa-folder-plus" style={{ fontSize: "20px", color: 'black' }}></i>
-                <p >New Folder</p>
-            </Button> */}
-            <Modal show={open} onHide={closeModal} size='xl'>
-                <Modal.Header style={{ background: 'black' }}>
+            <Modal show={open} onHide={closeModal} size='xl' className='no-border border-0'>
+                <Modal.Header style={{ background: 'black' }} className='no-border border-0'>
 
                     <div className='m-header'>
                         <img className="d-icons" src={Setting} />
                         Settings
                     </div>
                 </Modal.Header>
-                <Modal.Body style={{ background: '#000000e6' }}>
+                <Modal.Body style={{ background: '#000000e6' }} className='no-border border-0'>
                     <div className="m-sidebar">
                         <div className='m-options'>
                             <p onClick={() => setOption("KeyBoard Shortcuts")}>KeyBoard Shortcuts</p>
@@ -60,7 +55,7 @@ function Settings() {
                         </div>
                     </div>
                 </Modal.Body>
-                <Modal.Footer style={{ background: 'black' }}>
+                <Modal.Footer style={{ background: 'black' }} className='no-border border-0'>
                     {/* <Button>Ok</Button> */}
                     <Button className='bg-dark border-0'>Apply</Button>
 

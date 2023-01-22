@@ -8,6 +8,7 @@
     font-size: 1.05rem;
     font-weight: 300;
     font-family: Roboto;
+    width: 96%;
     /* width: 94.65vw; */
     overflow-x: scroll;
 }
@@ -23,11 +24,11 @@
     outline: none;
     border: none;
     height: 6.39;
-    width: 16.125rem;   
+    width: 500px;   
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1.2rem;
+    padding: 0 12px;
     letter-spacing: 0.5px;
     border-right:1px solid rgb(37, 37, 38)
 }
@@ -39,7 +40,7 @@
 }
 .cross{
     transform: scale(1.2);
-    padding:0 0.3rem;
+    margin:0 10px 0 30px;
     border-radius: 20%;
     color: var(--white);
 }

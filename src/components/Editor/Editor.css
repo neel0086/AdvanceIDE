@@ -27,3 +27,7 @@
 .ace-line span{
   line-height: 10rem;
 }
+.suggestions{
+  background: var(--sidebarDark);
+  color: white;
+}

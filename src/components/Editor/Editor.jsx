@@ -29,6 +29,8 @@ const Editor = (props) => {
   const { codeVal, setCodeVal } = useContext(CodeContext)
   const OnChangeHandler = (value) => {
     console.log(value)
+    const suggestions = document.querySelector('.ace_text-layer')
+    console.log(suggestions)
     // fs.readdir("", (err, files) => {
     //   if (err)
     //     
@@ -73,7 +75,7 @@ const Editor = (props) => {
   }
   return (
     <div style={{height:'100%'}}>
-      <Box elevation={3} sx={{ height: '100%' }}>
+      <Box elevation={3} sx={{ height: '95%' }}>
         <AceEditor
           mode={languageMode == "python3" || languageMode == "python2" ? "python" : languageMode}
           theme={themeMode}
@@ -98,6 +100,7 @@ const Editor = (props) => {
           }}
         />
       </Box>
+      <div style={{height:'50%'}} className="suggestions">Hello</div>
       {/* <button onClick={handleSubmit}>Submit</button> */}
     </div>
   );

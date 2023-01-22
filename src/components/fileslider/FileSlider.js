@@ -121,7 +121,7 @@ function FileSlider() {
                         {item["name"]}
                         <span className='cross active'
                             id={'#' + item["path"]}
-                            style={{ display: `${filenum == item["path"] ? 'block' : 'none'}` }}>
+                            style={{ opacity: `${filenum == item["path"] ? 1 : 0}` }}>
                             x
                         </span>
 
