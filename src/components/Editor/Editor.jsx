@@ -75,7 +75,7 @@ const Editor = (props) => {
   }
   return (
     <div style={{height:'100%'}}>
-      <Box elevation={3} sx={{ height: '95%' }}>
+      <Box elevation={3} sx={{ height: '100%' }}>
         <AceEditor
           mode={languageMode == "python3" || languageMode == "python2" ? "python" : languageMode}
           theme={themeMode}
@@ -100,7 +100,7 @@ const Editor = (props) => {
           }}
         />
       </Box>
-      <div style={{height:'50%'}} className="suggestions">Hello</div>
+      {/* <div style={{height:'50%'}} className="suggestions">Hello</div> */}
       {/* <button onClick={handleSubmit}>Submit</button> */}
     </div>
   );

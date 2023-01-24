@@ -16,28 +16,28 @@ function SidebarExpandable() {
 
 
     useEffect(() => {
-        const divEl = document.querySelector('.SidebarExpUi');
+        const divE2 = document.querySelector('.SidebarExpUi');
 
 
         let cflag, dflag = false, temp;
         const lastPoint = { x: null, y: null }
-        divEl.addEventListener('mousedown', (e) => {
-            // console.log("Mosedrag")
+        divE2.addEventListener('mousedown', (e) => {
+            // 
             let temp1 = e.clientX
-            console.log(temp1)
+            
             temp = temp1
             var rect = e.target.getBoundingClientRect();
             var x = e.clientX - rect.left; //x position within the element.
-            if (divEl.offsetWidth - 15 <= x) {
+            if (divE2.offsetWidth - 15 <= x) {
                 document.body.setAttribute('style', 'cursor:e-resize !important');
                 // document.body.style.cursor = "e-resize";
-                console.log(99)
+                
                 dflag = true
             }
         })
         document.body.addEventListener('mouseup', (e) => {
             e.preventDefault()
-            console.log(cflag)
+            
             if (dflag) {
                 document.body.setAttribute('style', 'cursor:default !important');
                 dflag = false
@@ -45,31 +45,46 @@ function SidebarExpandable() {
             }
         })
         window.addEventListener('mousemove', (e) => {
-            console.log("moving")
 
             if (dflag) {
                 // window.style.cursor = "grabbing"
                 temp = temp+(e.clientX > lastPoint.x ? e.clientX - lastPoint.x : e.clientX < lastPoint.x ? e.clientX - lastPoint.x: 0)
-                divEl.style.width = temp + "px"
-                // console.log(temp + "%")
+                console.log(temp)
+                if (temp<150) temp=5;
+                divE2.style.width = temp + "px"
+                // 
                 // temp += 1
                 
             }
             lastPoint.x = e.clientX
             lastPoint.y = e.clientY
         });
+        divE2.addEventListener('mouseover', (e) => {
+            // 
+            let temp1 = e.clientX
+            temp = temp1
+            var rect = e.target.getBoundingClientRect();
+            var x = e.clientX - rect.left; //x position within the element.
+            if (divE2.offsetWidth - 14 <= x) {
+                document.body.setAttribute('style', 'cursor:e-resize !important');
+                
+            }
+            else{
+                document.body.setAttribute('style', 'cursor:default !important');
+            }
+        })
         
 
     }, [])
     useEffect(()=>{
-        const divEl = document.querySelector('.SidebarExpUi');
+        const divE2 = document.querySelector('.SidebarExpUi');
         if(sideBarVal=="FolderView"){
-            divEl.style.width = "20%"
+            divE2.style.width = "20%"
         }
     },[sideBarVal])
     return (
-        <div className='SidebarExpUi' style={{ display: `${sideBarVal == "FolderView" ? 'block' : 'none'}`, width: '20%' }} >
-            <div className='s-open' style={{ width: '100%' }}>
+        <div className='SidebarExpUi' style={{ display: `${sideBarVal == "FolderView" ? 'block' : 'none'}`, width: '20% !important' }} >
+            <div className='s-open' >
                 <FolderTree />
 
 

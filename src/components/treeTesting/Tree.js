@@ -262,17 +262,21 @@ function Tree() {
         dflag = true
       }
     })
-    document.body.addEventListener('mouseup', (e) => {
-      e.preventDefault()
-      console.log(cflag)
-      if (dflag) {
-        document.body.setAttribute('style', 'cursor:default !important');
-        dflag = false
 
-      }
+    document.body.addEventListener('mouseup', (e) => {
+      
+        e.preventDefault()
+        console.log(cflag)
+        if (dflag) {
+          document.body.setAttribute('style', 'cursor:default !important');
+          dflag = false
+
+        }
+      
     })
+
     window.addEventListener('mousemove', (e) => {
-      console.log("moving")
+      console.log("moving", "file")
 
       if (dflag) {
         // window.style.cursor = "grabbing"
@@ -290,7 +294,7 @@ function Tree() {
   }, [])
   useEffect(() => {
     const divEl = document.querySelector('.treevis');
-    if (sideBarVal == "FolderView") {
+    if (sideBarVal == "TreeView") {
       divEl.style.width = "100%"
     }
   }, [sideBarVal])
@@ -303,27 +307,27 @@ function Tree() {
           </canvas>
         </div>
         <div className="screen">
-          <div style={{marginRight:'1rem'}}>
-            <Dropdown style={{height:'100%'}}>
+          <div style={{ marginRight: '1rem' }}>
+            <Dropdown style={{ height: '100%' }}>
               <Dropdown.Toggle variant="success" id="dropdown-basic">
                 Input-Type
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1"
-                  
-                    // className="subA"
-                    onClick={() => setLevelView(false)}
-                    style={{ backgroundColor: levelView ? "white" : "#cecece" }}
-                  >
-                    Edge List
+
+                  // className="subA"
+                  onClick={() => setLevelView(false)}
+                  style={{ backgroundColor: levelView ? "white" : "#cecece" }}
+                >
+                  Edge List
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-2"
-                    // className="subL"
-                    onClick={() => { setLevelView(true); console.log(levelView) }}
-                    style={{ backgroundColor: levelView ? "#cecece" : "white " }}
-                  >
-                    LevelOrder
+                  // className="subL"
+                  onClick={() => { setLevelView(true); console.log(levelView) }}
+                  style={{ backgroundColor: levelView ? "#cecece" : "white " }}
+                >
+                  LevelOrder
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

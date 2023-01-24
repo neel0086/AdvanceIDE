@@ -1,44 +1,54 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
 }
+
 @import url('https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong|Roboto&display=swap');
+
 :root {
-    --white:#ffffff;
-    --black:#000000;
-    --skin:#e2c08d;
-    --green:rgb(155, 255, 116);
-    --navbarDark : rgb(50, 50, 51);
-    --sidebarDark : rgb(51, 51, 51);
-    --sidebarOpen:rgba(37,37,38,1);
-    --fontChangeBack:#414141;
-    --modalColor:#000000e6;
+    --white: #ffffff;
+    --black: #000000;
+    --skin: #e2c08d;
+    --green: rgb(155, 255, 116);
+    --navbarDark: rgb(50, 50, 51);
+    --sidebarDark: rgb(51, 51, 51);
+    --sidebarOpen: rgba(37, 37, 38, 1);
+    --fontChangeBack: #414141;
+    --modalColor: #000000e6;
     background-color: rgba(35, 34, 34, 0.707);
-    --hoverColor:rgba(35, 34, 34, 0.707);
-    
-    --fbar:#252526;
-    --fbutton:#2D2D2D;
-    --fbuttonDark:#1E1E1E;
+    --hoverColor: rgba(35, 34, 34, 0.707);
+
+    --fbar: #252526;
+    --fbutton: #2D2D2D;
+    --fbuttonDark: #1E1E1E;
 }
-.handleMainUi{
+
+.handleMainUi {
     display: flex;
     width: 100vw;
     height: 100%;
     position: relative;
 }
-.editor-Area{
+
+.editor-Area {
     display: flex;
     height: 100%;
     width: 100%;
     flex-direction: column;
     /* width: 100vw; */
 }
-.App{
+
+.App {
     position: fixed;
     display: flex;
     flex-direction: column;
     height: 100vh;
     width: 100vw;
-    
+
 }

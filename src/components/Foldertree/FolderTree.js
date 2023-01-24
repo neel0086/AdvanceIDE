@@ -2,17 +2,18 @@ import React, { useContext, useEffect, useState } from 'react'
 import { FolderContext } from '../../context/FolderProvider'
 import './FolderTree.css'
 import FolderIcon from '../../images/folder.png'
+import FolderRecc from './FolderRecc'
 const fs = window.require('fs');
 function FolderTree() {
     const [folderActive, setFolderActive] = useState("");
+    const [folderData,setFolderData] = useState({});
     const { folderVal } = useContext(FolderContext);
-
+    
     useEffect(() => {
-
         const fileFolder = {}
-        const createDirectoryTree = (fileDir, depth) => {
+        const createDirectoryTree = (fileDir, depth,f_name='root') => {
             let filenames = fs.readdirSync(fileDir);
-            var ulHtml = ""
+            var ulHtml = {"name":f_name,children:[]}
             filenames.forEach(async (file) => {
                 var stat = fs.lstatSync(fileDir + '\\' + file);
                 if (fileDir in fileFolder) {
@@ -22,10 +23,10 @@ function FolderTree() {
                     fileFolder[fileDir] = []
                 }
                 if (stat.isFile()) {
-                    ulHtml += "<li><span className='caret' onclick='eventHandle()'>" + file + "</span></li>"
+                    ulHtml['children'].push({"name":file})
                 }
                 else {
-                    ulHtml += "<li><span class='caret' onclick='eventHandle()'>" + file + "</span><ul className='nested'>" + createDirectoryTree(fileDir + "\\" + file, depth + 1) + "</ul></li>"
+                    ulHtml['children'].push({"name":file,"children":[createDirectoryTree(fileDir + "\\" + file, depth + 1,file)]})
                 }
             });
             return ulHtml
@@ -35,7 +36,7 @@ function FolderTree() {
         const changeSidebarFolder = (pfiles, folderName) => {
             let filenames = fs.readdirSync(pfiles);
             setFolderActive(folderName.toUpperCase())
-            document.querySelector("#myUL").innerHTML = createDirectoryTree(pfiles, 0, "")
+            setFolderData(createDirectoryTree(pfiles, 0, ""))
         }
 
         //CONTROLLING FOLDER VIEW (IN PROCESS)
@@ -49,15 +50,8 @@ function FolderTree() {
             folderView()
     }, [folderVal])
 
-    var toggler = document.getElementsByClassName("caret");
-    var i;
 
-    for (i = 0; i < toggler.length; i++) {
-        toggler[i].addEventListener("click", "#myUL", function () {
-            this.parentElement.querySelector(".nested").classList.toggle("active");
-            this.classList.toggle("caret-down");
-        });
-    }
+
 
     // HTML SCRIPTS STARTS
     return (
@@ -72,6 +66,8 @@ function FolderTree() {
             </div>
             <div className='treeview'>
                 <ul id="myUL">
+                    <FolderRecc folder={folderData}/>
+                    
 
                 </ul>
             </div>
