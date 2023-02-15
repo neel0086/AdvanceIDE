@@ -1,16 +1,16 @@
 .inp_out{
     display: flex;
+    background-color: var(--fbutton);
+    margin: 0;
+    padding: 0;
 }
-.io-input{
-    height: 100%;
-    width: 50%;
-    border-right: 1px outset black;
-}
-.io-input textarea{
-    resize: horizontal;
+.io-area{
+    width: inherit;
+    height: inherit;
+    color: var(--white);
+    font-family: Consolas,"Courier New",monospace;
     background: inherit;
-    padding:5px 10px
-}
-.io-output{
-    height: 100%;
+    padding:5px 10px;
+    resize: none;
+    
 }

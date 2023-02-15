@@ -18,7 +18,6 @@ function Tree() {
 
 
     let canvaOut = document.querySelector(".canvaOuter")
-    console.log(canvaOut)
     window.addEventListener('load', start);
     window.addEventListener('resize', canvasSetter);
 
@@ -46,7 +45,6 @@ function Tree() {
     // LOGIC FOR EDGE LIST FORMING ADJACENY LIST
     function simplify(vertex, parent) {
       if (adj[vertex].length < 1) return
-      console.log(adj[vertex])
       let index = -1
       for (let k = 0; k < adj[vertex].length; k++) {
         if (adj[vertex][k] != parent)
@@ -57,7 +55,6 @@ function Tree() {
       }
       if (index > -1)
         adj[vertex].splice(index, 1)
-      console.log(vertex)
       return
     }
     function startadj(x) {
@@ -73,7 +70,6 @@ function Tree() {
       if (n > 31) { nodeSpace = 0.85; }
       if (n > 63) { nodeSpace = 0.5; dx = 350 }
 
-      console.log(levelOrder, y)
       let nodesSet = new Set()
       levelOrder.forEach((ver, i) => {
 
@@ -95,15 +91,11 @@ function Tree() {
       root = InpRoot != InpRoot ? nodes[0] : InpRoot
       nodesSet.add(root)
       nodes = Array.from(nodesSet);
-      console.log(root)
-      console.log(adj)
       simplify(root, -1)
-      console.log(adj, nodes, levelOrder)
       pos[root] = [width / (n > 63 ? 1 : 2), 75]
       place(root, 1);
 
 
-      console.log(pos)
       drawadj()
     }
 
@@ -144,7 +136,6 @@ function Tree() {
     // LOGIC FOR LEVEL ORDER LIST FORMING ADJACENY LIST
     function start() {
       levelOrder = inpArray.split(',').map(Number)
-      console.log(levelOrder, nodes)
       n = levelOrder.length
       canvasSetter(n > 63 ? 2 : 1);
 
@@ -174,18 +165,15 @@ function Tree() {
         else prevNull += 1
       }
 
-      console.log(adj)
       root = 0
       pos[root] = [width / (n > 63 ? 1 : 2), 75]
       place(root, 1);
 
-      console.log(pos)
       draw()
     }
 
     // DRAWING FOR ADJANCEY LIST BY LEVEL ORDER LIST
     function draw() {
-      console.log(levelOrder, nodes, adj)
       nodes.forEach(i => {
 
         let wd = ctx.measureText(levelOrder[i]).width;
@@ -228,7 +216,6 @@ function Tree() {
         startadj(inpArray)
     }
     catch (e) {
-      console.log(e)
     }
 
   }, [inpArray, levelView, InpRoot]);
@@ -249,16 +236,13 @@ function Tree() {
     let cflag, dflag = false, temp;
     const lastPoint = { x: null, y: null }
     divEl.addEventListener('mousedown', (e) => {
-      // console.log("Mosedrag")
       let temp1 = e.clientX
-      console.log(temp1)
       temp = temp1
       var rect = e.target.getBoundingClientRect();
       var x = e.clientX - rect.left; //x position within the element.
       if (divEl.offsetWidth - 15 <= x) {
         document.body.setAttribute('style', 'cursor:e-resize !important');
         // document.body.style.cursor = "e-resize";
-        console.log(99)
         dflag = true
       }
     })
@@ -266,7 +250,6 @@ function Tree() {
     document.body.addEventListener('mouseup', (e) => {
       
         e.preventDefault()
-        console.log(cflag)
         if (dflag) {
           document.body.setAttribute('style', 'cursor:default !important');
           dflag = false
@@ -276,13 +259,11 @@ function Tree() {
     })
 
     window.addEventListener('mousemove', (e) => {
-      console.log("moving", "file")
 
       if (dflag) {
         // window.style.cursor = "grabbing"
         temp = temp + (e.clientX > lastPoint.x ? e.clientX - lastPoint.x : e.clientX < lastPoint.x ? e.clientX - lastPoint.x : 0)
         divEl.style.width = temp + "px"
-        // console.log(temp + "%")
         // temp += 1
 
       }
@@ -324,7 +305,6 @@ function Tree() {
                 </Dropdown.Item>
                 <Dropdown.Item href="#/action-2"
                   // className="subL"
-                  onClick={() => { setLevelView(true); console.log(levelView) }}
                   style={{ backgroundColor: levelView ? "#cecece" : "white " }}
                 >
                   LevelOrder

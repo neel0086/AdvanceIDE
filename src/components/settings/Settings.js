@@ -15,7 +15,6 @@ function Settings() {
     const [option, setOption] = useState("")
 
     useEffect(() => {
-        console.log("Hello")
         if (sideBarVal == "Settings")
             setOpen(true)
     }, [sideBarVal])

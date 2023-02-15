@@ -9,15 +9,16 @@ const fs = require("fs")
 //     fs.mkdirSync(outputCodes,{recursive:true})
 // }
 const runCpp = (filepath) => {
-  console.log(filepath.substring(0, filepath.lastIndexOf("\\")),filepath)
+  const inputFile = "D:\\SDP\\io\\input.txt"
+  const outputFile = "D:\\SDP\\io\\output.txt"
+
   const directoryName = filepath.substring(0, filepath.lastIndexOf("\\"))
   const fileName = filepath.substring(filepath.lastIndexOf("\\")+1,filepath.length)
   const jobId = fileName.split('.')[0]
-  console.log(directoryName,jobId,fileName)
   const outputPath = path.join(filepath.substring(0,filepath.lastIndexOf("\\") + 1), `${jobId}.out`)
   return new Promise((resolve, reject) => {
     exec(
-      `cd ${directoryName} && g++ ${filepath} -o ${jobId}.out && ${jobId}.out <input.txt> output.txt`,
+      `cd ${directoryName} && g++ ${fileName} -o ${jobId}.out && ${jobId}.out < ${inputFile} > ${outputFile}`,
 
       (error, stdout, stderr) => {
         error && reject({ error, stderr });

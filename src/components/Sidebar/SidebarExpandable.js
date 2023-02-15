@@ -49,7 +49,6 @@ function SidebarExpandable() {
             if (dflag) {
                 // window.style.cursor = "grabbing"
                 temp = temp+(e.clientX > lastPoint.x ? e.clientX - lastPoint.x : e.clientX < lastPoint.x ? e.clientX - lastPoint.x: 0)
-                console.log(temp)
                 if (temp<150) temp=5;
                 divE2.style.width = temp + "px"
                 // 

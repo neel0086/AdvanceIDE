@@ -51,10 +51,12 @@
 .recc_tree li,
 .recc_tree ul {
   cursor: pointer;
+  padding-left: 5px;
 }
 
 .t-folder {
   /* line-height: 12px; */
+  color: var(--skin);
   vertical-align: middle;
   display: flex;
   align-items: center;
@@ -64,15 +66,31 @@
   padding-right: 3px;
   filter: invert(1);
 }
+.t-file img{
+  padding-right: 6px;
+}
 
 .t-file {
+
   max-width: inherit;
   word-break: break-all;
-  padding-left: 2px;
+  padding-left: 20px;
 }
 
 .t-file,
 .t-folder {
   font-size: 1.15em;
   margin-bottom: 5px;
+  
+}
+.recc_tree span{
+  padding: 2px 2px 2px 7px;
+  border-radius: 5px;
+
+}
+.recc_tree .t-file:hover,.recc_tree .t-folder:hover {
+  background: var(--expandableHoverColor);
+}
+li{
+  border-left: 0.1px inset var(--expandableHoverColor);
 }

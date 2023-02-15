@@ -3,6 +3,7 @@ import { FolderContext } from '../../context/FolderProvider'
 import './FolderTree.css'
 import FolderIcon from '../../images/folder.png'
 import FolderRecc from './FolderRecc'
+import {FileIcons} from './FileIcons'
 const fs = window.require('fs');
 function FolderTree() {
     const [folderActive, setFolderActive] = useState("");
@@ -11,7 +12,7 @@ function FolderTree() {
     
     useEffect(() => {
         const fileFolder = {}
-        const createDirectoryTree = (fileDir, depth,f_name='root') => {
+        const createDirectoryTree = (fileDir, depth,f_name) => {
             let filenames = fs.readdirSync(fileDir);
             var ulHtml = {"name":f_name,children:[]}
             filenames.forEach(async (file) => {
@@ -23,10 +24,10 @@ function FolderTree() {
                     fileFolder[fileDir] = []
                 }
                 if (stat.isFile()) {
-                    ulHtml['children'].push({"name":file})
+                    ulHtml['children'].push({"name":file,"path":fileDir+"\\"+file})
                 }
                 else {
-                    ulHtml['children'].push({"name":file,"children":[createDirectoryTree(fileDir + "\\" + file, depth + 1,file)]})
+                    ulHtml['children'].push(createDirectoryTree(fileDir + "\\" + file, depth + 1,file))
                 }
             });
             return ulHtml
@@ -36,7 +37,7 @@ function FolderTree() {
         const changeSidebarFolder = (pfiles, folderName) => {
             let filenames = fs.readdirSync(pfiles);
             setFolderActive(folderName.toUpperCase())
-            setFolderData(createDirectoryTree(pfiles, 0, ""))
+            setFolderData(createDirectoryTree(pfiles, 0, "",folderName))
         }
 
         //CONTROLLING FOLDER VIEW (IN PROCESS)
@@ -60,12 +61,12 @@ function FolderTree() {
                 <span></span>FolderView
             </div>
             <div className='ft-name'>
-                <span><img src={FolderIcon} /></span>
+                <span><img src="/images/folder.png" /></span>
                 <span>{folderActive}</span>
 
             </div>
             <div className='treeview'>
-                <ul id="myUL">
+                <ul id="myUL" >
                     <FolderRecc folder={folderData}/>
                     
 

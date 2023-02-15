@@ -14,23 +14,28 @@ import './Editor.css'
 import { FileContext } from "../../context/FileProvider";
 import { getOutput } from "../../services/api";
 import { CodeContext } from "../../context/CodeProvider";
+import { useRef } from 'react';
+
 import runCpp from "./run";
+import InputOutput from "../Input/InputOutput";
 // import { TRUE } from "node-sass";
 const fs = window.require('fs');
+const { exec } = window.require('child_process');
+
 const ipcRenderer = window.require('electron')
 
 
 const Editor = (props) => {
   const [code, setCode] = useState();
+  const [output,setOutput] = useState();
+
   const { languageMode, setLanguageMode } = useContext(LanguageContext)
   const { themeMode, setThemeMode } = useContext(ThemeModeContext)
   const { fontVal, setFontVal } = useContext(FontContext)
   const { fileVal, setFileVal } = useContext(FileContext);
   const { codeVal, setCodeVal } = useContext(CodeContext)
   const OnChangeHandler = (value) => {
-    console.log(value)
     const suggestions = document.querySelector('.ace_text-layer')
-    console.log(suggestions)
     // fs.readdir("", (err, files) => {
     //   if (err)
     //     
@@ -68,13 +73,26 @@ const Editor = (props) => {
     // Synchronous message emmiter and handler
     //  console.log(ipcRenderer.sendSync('synchronous-message', 'sync ping')) 
     try {
-      const output = await runCpp(fileVal['path'])
-      console.log(output)
+      await runCpp(fileVal['path'])
+      setOutput("changed state")
+      // console.log(output)
+      // setOutput(output)
     }
-    catch (e) {console.log(e) }
+    catch (e) { console.log(e) }
   }
+
+
+  const [formattedCode, setFormattedCode] = useState('');
+  const codeRef = useRef(null);
+
+ 
+
+
+
+
   return (
-    <div style={{height:'100%'}}>
+    <div style={{ height: '50%' }}>
+      <button onClick={handleSubmit}>Hello</button>
       <Box elevation={3} sx={{ height: '100%' }}>
         <AceEditor
           mode={languageMode == "python3" || languageMode == "python2" ? "python" : languageMode}
@@ -99,9 +117,9 @@ const Editor = (props) => {
             fontFamily: "Consolas, 'Courier New', monospace",
           }}
         />
+        
       </Box>
-      {/* <div style={{height:'50%'}} className="suggestions">Hello</div> */}
-      {/* <button onClick={handleSubmit}>Submit</button> */}
+      <InputOutput output={output}/>
     </div>
   );
 };

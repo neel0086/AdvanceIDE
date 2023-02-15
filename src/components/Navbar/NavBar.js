@@ -26,10 +26,8 @@ function NavBar() {
 
   const SaveFile = () => {
     if (fs.existsSync(fileVal['path'])) {
-      console.log(codeVal,fileVal)
       fs.writeFile(fileVal['path'],codeVal,(err)=>{
         if(err){
-          console.log(err)
         }
         else{
           console.log("Sucess");

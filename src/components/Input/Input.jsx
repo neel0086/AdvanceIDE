@@ -8,6 +8,19 @@ const Input = (props) => {
   const inputHandler = () => {
     props.forewardedRef(InputRef.current.value);
   };
+  const [div1Width, setDiv1Width] = useState(200);
+  const [div2Width, setDiv2Width] = useState(200);
+
+  const handleDrop = (e, div) => {
+    e.preventDefault();
+    if (div === "div1") {
+      setDiv1Width(div1Width + 10);
+      setDiv2Width(div2Width - 10);
+    } else if (div === "div2") {
+      setDiv2Width(div2Width + 10);
+      setDiv1Width(div1Width - 10);
+    }
+  };
 
   return (
     <Grid item xs={12}>

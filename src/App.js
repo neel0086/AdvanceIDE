@@ -73,7 +73,7 @@ function App() {
                         <div className="editor-Area" >
                           <FileSlider />
                           <Editor />
-                          {/* <InputOutput /> */}
+                          
                         </div>
                       </div>
                     </div>

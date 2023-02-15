@@ -22,8 +22,8 @@
     --fontChangeBack: #414141;
     --modalColor: #000000e6;
     background-color: rgba(35, 34, 34, 0.707);
-    --hoverColor: rgba(35, 34, 34, 0.707);
-
+    --navbarHoverColor: rgba(35, 34, 34, 0.707);
+    --expandableHoverColor:rgb(25, 25, 25);
     --fbar: #252526;
     --fbutton: #2D2D2D;
     --fbuttonDark: #1E1E1E;
