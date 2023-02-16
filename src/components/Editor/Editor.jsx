@@ -27,7 +27,7 @@ const ipcRenderer = window.require('electron')
 
 const Editor = (props) => {
   const [code, setCode] = useState();
-  const [output,setOutput] = useState();
+  
 
   const { languageMode, setLanguageMode } = useContext(LanguageContext)
   const { themeMode, setThemeMode } = useContext(ThemeModeContext)
@@ -68,18 +68,7 @@ const Editor = (props) => {
   };
 
   // ON SUBMIT OF CODE
-  const handleSubmit = async () => {
-
-    // Synchronous message emmiter and handler
-    //  console.log(ipcRenderer.sendSync('synchronous-message', 'sync ping')) 
-    try {
-      await runCpp(fileVal['path'])
-      setOutput("changed state")
-      // console.log(output)
-      // setOutput(output)
-    }
-    catch (e) { console.log(e) }
-  }
+  
 
 
   const [formattedCode, setFormattedCode] = useState('');
@@ -92,7 +81,7 @@ const Editor = (props) => {
 
   return (
     <div style={{ height: '50%' }}>
-      <button onClick={handleSubmit}>Hello</button>
+      {/* <button onClick={handleSubmit}>Hello</button> */}
       <Box elevation={3} sx={{ height: '100%' }}>
         <AceEditor
           mode={languageMode == "python3" || languageMode == "python2" ? "python" : languageMode}
@@ -119,7 +108,7 @@ const Editor = (props) => {
         />
         
       </Box>
-      <InputOutput output={output}/>
+      <InputOutput/>
     </div>
   );
 };

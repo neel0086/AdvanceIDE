@@ -3,14 +3,38 @@
     background-color: var(--fbutton);
     margin: 0;
     padding: 0;
+    width: 100%;
+    height: 100%;
 }
 .io-area{
-    width: inherit;
-    height: inherit;
+    width: 100%;
+    height: 91%;
     color: var(--white);
     font-family: Consolas,"Courier New",monospace;
     background: inherit;
-    padding:5px 10px;
-    resize: none;
+    /* padding:5px 10px; */
     
+    
+}
+.io-area-text{
+    padding: 5px 10px;
+    resize: none;
+}
+.io-screen{
+    display: flex;
+    flex-direction: column;
+}
+.io-screen .runBtn{
+    padding: 8px 20px;
+    float: right;
+    color: var(--white);
+    background:var(--fbutton);
+
+}
+.io-screen .runBtn img{
+    margin-right: 15px;
+    cursor: pointer;
+}
+.io-screen .runBtn img:hover{
+    filter: invert(1);
 }
