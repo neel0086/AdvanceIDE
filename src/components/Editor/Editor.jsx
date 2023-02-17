@@ -73,8 +73,15 @@ const Editor = (props) => {
 
   const [formattedCode, setFormattedCode] = useState('');
   const codeRef = useRef(null);
-
- 
+  const editorRef = useRef(null);
+ useEffect(()=>{
+  window.oncontextmenu = function () {
+      
+      const editor = editorRef.current.editor;
+      const selectedText = editor.getCopyText();
+      console.log("Selected text:", selectedText);
+  }
+ })
 
 
 
@@ -84,6 +91,7 @@ const Editor = (props) => {
       {/* <button onClick={handleSubmit}>Hello</button> */}
       <Box elevation={3} sx={{ height: '100%' }}>
         <AceEditor
+        ref={editorRef}
           mode={languageMode == "python3" || languageMode == "python2" ? "python" : languageMode}
           theme={themeMode}
           onChange={OnChangeHandler}

@@ -3,27 +3,27 @@ import './Settings.css'
 
 function FontAndStyles() {
     return (
-        <div>
-            <div className='f-row'>
-                <span className='sub-name'>Font-Size</span>
-                <span class="font_size">
-                    <input type='number' />
-                </span>
+        <div className='fs-container'>
+            <div className='fs-section'>
+                
+                <p className='sub-name'>Font-Size</p>
+                <p className='sub-desc'>Font size in pixels</p>
+                <input type='number' className='fs-inp'/>
 
             </div>
-            <div className='f-row'>
-                <span className='sub-name'>Font-Family</span>
-                <span class="font_family">
-                    <input type='text' list="font_styles"/>
-                    <datalist id="font_styles">
-                        <option>Volvo</option>
-                        <option>Saab</option>
-                        <option>Mercedes</option>
-                        <option>Audi</option>
-                    </datalist>
-                </span>
+            <div className='fs-section'>
+                <p className='sub-name'>Font-Family</p>
+                <p className='sub-desc'>Font family for editor</p>
+                <input type='text' list="font_styles" className='fs-inp'/>
+                <datalist id="font_styles">
+                    <option>Volvo</option>
+                    <option>Saab</option>
+                    <option>Mercedes</option>
+                    <option>Audi</option>
+                </datalist>
 
             </div>
+
         </div>
     )
 }

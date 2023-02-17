@@ -37,7 +37,7 @@ function InputOutput() {
 
         try {
             if (languageMode == "c_pp") {
-                
+
                 if (fileVal['path'].split('.')[1] == "cpp") {
                     setOutputData(await runCpp(fileVal['path']))
                 }
@@ -46,12 +46,12 @@ function InputOutput() {
                 }
 
             }
-            else if (languageMode == "python3" || languageMode=="python2") {
+            else if (languageMode == "python3" || languageMode == "python2") {
                 if (fileVal['path'].split('.')[1] == "py") {
-                    
+
                     setOutputData(await runPy(fileVal['path']))
                 }
-                else{
+                else {
                     errorHandle()
                 }
             }
@@ -87,9 +87,19 @@ function InputOutput() {
 
     return (
         <div className="io-screen" style={{ height: '100%', width: '100%' }}>
-            <div className='runBtn'>
-                <img src={Save} onClick={SaveFile} />
-                <img src={Run} onClick={handleSubmit} />
+            <div className='io-navbar'>
+                <div className='suggestion'>
+                    <span>avg</span>
+                    <span>sum</span>
+                    <span>sub</span>
+                    <span>prefix</span>
+                    <span>bits</span>
+
+                </div>
+                <div className='runBtn'>
+                    <img src={Save} onClick={SaveFile} />
+                    <img src={Run} onClick={handleSubmit} />
+                </div>
             </div>
             <div className="inp_out">
                 <div className='io-area'>

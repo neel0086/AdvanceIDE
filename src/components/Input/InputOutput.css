@@ -25,8 +25,8 @@
     flex-direction: column;
 }
 .io-screen .runBtn{
-    padding: 8px 20px;
-    float: right;
+    padding: 1px 20px;
+    
     color: var(--white);
     background:var(--fbutton);
 
@@ -37,4 +37,26 @@
 }
 .io-screen .runBtn img:hover{
     filter: invert(1);
+}
+
+.io-screen .io-navbar{
+    background:var(--fbutton);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: var(--white);
+}
+.io-screen .io-navbar .suggestion{
+    margin: 5px 0;
+}
+.io-screen .io-navbar .suggestion span{
+    margin:0 10px;
+    padding: 3px 15px;
+    vertical-align: middle;
+    /* display: flex; */
+    /* align-items: center; */
+    text-align: center;
+    cursor: pointer;
+    background-color: var(--fbar);
+    border-radius: 4px;
 }

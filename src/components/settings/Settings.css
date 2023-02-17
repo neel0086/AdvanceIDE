@@ -45,34 +45,55 @@
 }
 
 /* Font and Styles */
-.f-row{
-    margin-bottom: 2rem;
+.fs-container .fs-inp{
+    border: none;
+    outline: none;
+    width: 50%;
+    height: 1.7rem;
+    border-radius:3px;
+    background-color: var(--fontChangeBack);
+    color: var(--white);
 }
-.f-row input{
-    margin:auto;
-    float:right;
+.fs-section{
+    margin-bottom: 50px;
 }
+
 .sub-name{
-    font-size: 18px;
+    font-size: 1.6em;
     font-family: Roboto;
     color: var(--white);
 }
-.font_size input{
+.sub-desc{
+    font-size: 18px;
+    font-family: Roboto;
+    color: var(--white);
+    filter: invert(0.2);
+}
+
+.modal-header {
+    border-bottom: 0 none;
+}
+
+.modal-footer {
+    border-top: 0 none;
+}
+
+/* Appearnce */
+.ap-container .ap-inp{
     border: none;
     outline: none;
     width: 50%;
+    height: 1.7rem;
     border-radius:3px;
     background-color: var(--fontChangeBack);
     color: var(--white);
 }
-.font_family input{
-    border: none;
-    outline: none;
-    width: 50%;
-    border-radius:3px;
-    background-color: var(--fontChangeBack);
-    color: var(--white);
+.ap-section{
+    margin-bottom: 50px;
 }
+
+
+
 .modal-header {
     border-bottom: 0 none;
 }
