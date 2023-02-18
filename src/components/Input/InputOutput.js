@@ -4,16 +4,23 @@ import Run from "../../images/run.png"
 import Save from "../../images/save.png"
 
 import { runCpp, runPy } from '../Editor/run';
-import { FileContext } from '../../context/FileProvider';
-import { CodeContext } from '../../context/CodeProvider';
-import { LanguageContext } from '../../context/LanguageProvider';
+import { SuggestionContext } from '../../context/SuggestionProvider';
+import { ProviderContext } from '../../context/Provider';
 const fs = window.require('fs');
-function InputOutput() {
+function InputOutput({ suggestionResult }) {
     const [outputData, setOutputData] = useState();
     const [inputData, setInputData] = useState("");
-    const { fileVal } = useContext(FileContext);
-    const { codeVal, setCodeVal } = useContext(CodeContext)
-    const { languageMode } = useContext(LanguageContext)
+    console.log(suggestionResult)
+
+    const { suggestionVal, setSuggestionVal } = useContext(SuggestionContext)
+
+    const {
+        fileVal,
+        codeVal,
+        setCodeVal,
+        languageMode
+    } = useContext(ProviderContext)
+
     const outputFlag = useRef()
     useEffect(() => {
         if (!outputFlag.current) {
@@ -89,20 +96,22 @@ function InputOutput() {
         <div className="io-screen" style={{ height: '100%', width: '100%' }}>
             <div className='io-navbar'>
                 <div className='suggestion'>
-                    <span>avg</span>
-                    <span>sum</span>
-                    <span>sub</span>
-                    <span>prefix</span>
-                    <span>bits</span>
+                    {suggestionResult && suggestionResult.map((key, index) => {
+                        return <span>{key.item}</span>
+                    })}
+
+                    {/* <span>hello</span> */}
 
                 </div>
                 <div className='runBtn'>
                     <img src={Save} onClick={SaveFile} />
                     <img src={Run} onClick={handleSubmit} />
+                    {/* <img src={CloseBtn} className="closeBtn"/> */}
                 </div>
             </div>
             <div className="inp_out">
                 <div className='io-area'>
+
                     <textarea className='io-area io-area-text' onChange={(e) => SaveInput(e)} value={inputData} spellCheck='false' />
                 </div>
                 <div className='io-area'>

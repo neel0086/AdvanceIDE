@@ -1,4 +1,3 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import AceEditor from "react-ace";
 import Box from "@mui/material/Box";
@@ -7,52 +6,30 @@ import "ace-builds/webpack-resolver";
 import Beautify from "ace-builds/src-noconflict/ext-beautify";
 import "ace-builds/src-min-noconflict/ext-language_tools";
 import "./acebuilds";
-import { LanguageContext } from "../../context/LanguageProvider";
-import { ThemeModeContext } from "../../context/ThemeModeProvider";
-import { FontContext } from "../../context/FontProvider";
 import './Editor.css'
-import { FileContext } from "../../context/FileProvider";
-import { getOutput } from "../../services/api";
-import { CodeContext } from "../../context/CodeProvider";
 import { useRef } from 'react';
-
-import runCpp from "./run";
+import Fuse from "fuse.js"
 import InputOutput from "../Input/InputOutput";
-// import { TRUE } from "node-sass";
+import { SuggestionContext } from "../../context/SuggestionProvider";
+import LeetcodeExtension from "../LeetcodeExtension/LeetcodeExtension";
+import { ProviderContext } from "../../context/Provider";
 const fs = window.require('fs');
-const { exec } = window.require('child_process');
+const Editor = () => {
+  const { suggestionVal, setSuggestionVal } = useContext(SuggestionContext)
+  const [currWord, setCurrWord] = useState("")
+  const [suggestionResult,setSuggestionResult] =useState([])
 
-const ipcRenderer = window.require('electron')
-
-
-const Editor = (props) => {
-  const [code, setCode] = useState();
-  
-
-  const { languageMode, setLanguageMode } = useContext(LanguageContext)
-  const { themeMode, setThemeMode } = useContext(ThemeModeContext)
-  const { fontVal, setFontVal } = useContext(FontContext)
-  const { fileVal, setFileVal } = useContext(FileContext);
-  const { codeVal, setCodeVal } = useContext(CodeContext)
+  const { languageMode,
+    themeMode,
+    fontVal,
+    fileVal,
+    codeVal,
+    setCodeVal } = useContext(ProviderContext)
+  // const [suggestionFunctions, setSuggestionFunctions] = useState({});
   const OnChangeHandler = (value) => {
-    const suggestions = document.querySelector('.ace_text-layer')
-    // fs.readdir("", (err, files) => {
-    //   if (err)
-    //     
-    //   else {
-    //     // 
-    //     // 
-    //     files.forEach(file => {
-    //       
-    //     })
-    //   }
-    // })
-    //   fs.readFile('D:\\SDP\\frontend\\.gitignore', 'utf8', function(err, data){
-
-    //     // Display the file content
-    //     
-    // });
     setCodeVal(value);
+
+
   };
 
   //SETCODE ON TERMINAL WHENEVER FILE CHANGES
@@ -67,31 +44,68 @@ const Editor = (props) => {
     setCodeVal(codeVal);
   };
 
+  useEffect(() => {
+
+  }, [codeVal])
+
   // ON SUBMIT OF CODE
-  
-
-
-  const [formattedCode, setFormattedCode] = useState('');
-  const codeRef = useRef(null);
   const editorRef = useRef(null);
- useEffect(()=>{
+
   window.oncontextmenu = function () {
-      
-      const editor = editorRef.current.editor;
-      const selectedText = editor.getCopyText();
-      console.log("Selected text:", selectedText);
+
+    const editor = editorRef.current.editor;
+    const selectedText = editor.getCopyText();
+    const functionNameMatch = selectedText.match(/int\s+(\w+)\s*\(/);
+
+    if (functionNameMatch) {
+      const functionName = functionNameMatch[1];
+      setSuggestionVal((prevFunctions) => {
+        return { ...prevFunctions, [functionName]: selectedText };
+      });
+      console.log("Added function:", functionName, suggestionVal);
+    } else {
+      console.log("Selected text does not include a valid function name");
+    }
+    fs.writeFile("D:\\SDP\\io\\suggestion.json", JSON.stringify({ ...suggestionVal, [functionNameMatch[1]]: selectedText }
+    ), err => {
+
+      // Checking for errors
+      if (err) throw err;
+
+      console.log("file writing"); // Success
+
+    })
   }
- })
+  const fuse = useRef(null);
 
+  useEffect(() => {
+    if (suggestionVal) {
+      const suggestionFunctionsName = Object.keys(suggestionVal)
+      fuse.current = new Fuse(suggestionFunctionsName);
+    }
+  }, [suggestionVal])
 
-
+  useEffect(() => {
+    if (null !== fuse.current) {
+      const result = fuse.current.search(currWord)
+      setSuggestionResult(result)
+    }
+  }, [currWord])
+  window.onkeypress = function (event) {
+    if (event.key >= 'a' && event.key<='z') {
+      setCurrWord(prev => {
+        return (prev + event.key)
+      })
+    } else {
+      setCurrWord('');
+    }
+  }
 
   return (
-    <div style={{ height: '50%' }}>
-      {/* <button onClick={handleSubmit}>Hello</button> */}
+    <div style={{ height: '88%' }}>
       <Box elevation={3} sx={{ height: '100%' }}>
         <AceEditor
-        ref={editorRef}
+          ref={editorRef}
           mode={languageMode == "python3" || languageMode == "python2" ? "python" : languageMode}
           theme={themeMode}
           onChange={OnChangeHandler}
@@ -114,9 +128,10 @@ const Editor = (props) => {
             fontFamily: "Consolas, 'Courier New', monospace",
           }}
         />
-        
+
       </Box>
-      <InputOutput/>
+      <InputOutput suggestionResult={suggestionResult}/>
+      <LeetcodeExtension questionId="two-sum" />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { FileContext } from '../../context/FileProvider';
+import { ProviderContext } from '../../context/Provider';
 import FolderCollapsedIcon from '../../images/folderCollapsed.png'
 import { FileIcons } from './FileIcons';
 const getFileIcon = (fileName) => {
@@ -15,7 +15,7 @@ const getFileIcon = (fileName) => {
 }
 function FolderRecc(props) {
     const [isOpen, setIsOpen] = useState(false);
-    const { setFileVal } = useContext(FileContext);
+    const { setFileVal } = useContext(ProviderContext);
 
     const toggleFolder = (e) => {
         if (e.children) {

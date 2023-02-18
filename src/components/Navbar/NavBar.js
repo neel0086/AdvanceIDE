@@ -4,15 +4,19 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import './NavBar.css'
 import Logo from '../../images/logo.png'
 import SelectLabels from '../Dropdown/SelectLabels';
-import { FileContext } from '../../context/FileProvider';
-import { FolderContext } from '../../context/FolderProvider';
-import { CodeContext } from '../../context/CodeProvider';
+
+import { ProviderContext } from '../../context/Provider';
 
 
 function NavBar() {
-  const { fileVal,setFileVal } = useContext(FileContext);
-  const { setFolderVal } = useContext(FolderContext);
-  const {codeVal,setCodeVal} = useContext(CodeContext)
+
+
+  const {
+    fileVal,
+    setFileVal,
+    setFolderVal,
+    codeVal,
+    setCodeVal } = useContext(ProviderContext)
   const fs = window.require('fs')
   //TRIGGER A EVENT FILE ADDITION 
   const EditorSpace = (e) => {

@@ -2,17 +2,20 @@
 import { styled, useTheme } from '@mui/material/styles';
 import './SideBar.css'
 import { useContext, useEffect, useRef, useState } from 'react';
-import Back from '../../images/back.png'
 import Folder from '../../images/folder.png'
 import Tree from '../../images/tree.png'
 import Setting from '../../images/settings.png'
-import { SideBarContext } from '../../context/SideBarProvider';
+import { ProviderContext } from '../../context/Provider';
 
 const drawerWidth = 240;
 
 export default function SideBar() {
   const theme = useTheme();
-  const { sideBarVal, setSideBarVal } = useContext(SideBarContext)
+
+  const {
+    sideBarVal,
+    setSideBarVal
+  } = useContext(ProviderContext);
   const firstUpdate = useRef(true)
   useEffect(() => {
     if (firstUpdate.current) {

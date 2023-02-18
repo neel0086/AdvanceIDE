@@ -1,5 +1,5 @@
 import React, { useState, useRef, useContext, useEffect } from 'react';
-import { FileContext } from '../../context/FileProvider';
+import { ProviderContext } from '../../context/Provider';
 import './FileSlider.css'
 
 function FileSlider() {
@@ -9,7 +9,7 @@ function FileSlider() {
     const [list, setList] = useState(Array);
 
     //CONTEXT PROVIDERS
-    const { fileVal, setFileVal } = useContext(FileContext)
+    const { fileVal, setFileVal } = useContext(ProviderContext)
 
     //USEREF FOR HANDLING USER's PREVIOUS STATES
     const firstUpdate = useRef(true);

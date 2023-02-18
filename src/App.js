@@ -14,6 +14,8 @@ import Tree from "./components/treeTesting/Tree";
 import Settings from "./components/settings/Settings";
 import CodeProvider from "./context/CodeProvider";
 import InputOutput from "./components/Input/InputOutput";
+import SuggestionProvider from "./context/SuggestionProvider";
+import Provider from "./context/Provider";
 
 
 function App() {
@@ -53,39 +55,43 @@ function App() {
 
   return (
     <div className="App">
-      <LanguageProvider>
+      {/* <LanguageProvider>
         <ThemeModeProvider>
           <FontProvider>
             <FileProvider>
               <FolderProvider>
                 <CodeProvider>
-                  <SideBarProvider>
-                    <NavBar />
+                  <SideBarProvider> */}
+                    <SuggestionProvider>
+                      <Provider>
+                        <NavBar />
 
-                    <div className="handleMainUi">
+                        <div className="handleMainUi">
 
-                      <SideBar />
-                      <div style={{ width: '100%' ,display:'flex'}}>
-                        <SidebarExpandable />
-                        <Tree /><Settings />
+                          <SideBar />
+                          <div style={{ width: '100%', display: 'flex' }}>
+                            <SidebarExpandable />
+                            <Tree /><Settings />
 
 
-                        <div className="editor-Area" >
-                          <FileSlider />
-                          <Editor />
-                          
+                            <div className="editor-Area" >
+                              <FileSlider />
+                              <Editor />
+
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
 
-                    {/* <Editor mode={mode} lang={lang} setCode={setCode} /> */}
-                  </SideBarProvider>
+                        {/* <Editor mode={mode} lang={lang} setCode={setCode} /> */}
+                      </Provider>
+                     </SuggestionProvider>
+                 {/* </SideBarProvider>
                 </CodeProvider>
               </FolderProvider>
             </FileProvider>
           </FontProvider>
         </ThemeModeProvider>
-      </LanguageProvider>
+      </LanguageProvider> */}
 
     </div>
 

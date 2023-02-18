@@ -1,14 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { FolderContext } from '../../context/FolderProvider'
 import './FolderTree.css'
-import FolderIcon from '../../images/folder.png'
 import FolderRecc from './FolderRecc'
-import {FileIcons} from './FileIcons'
+import { ProviderContext } from '../../context/Provider'
 const fs = window.require('fs');
 function FolderTree() {
     const [folderActive, setFolderActive] = useState("");
     const [folderData,setFolderData] = useState({});
-    const { folderVal } = useContext(FolderContext);
+    const { folderVal } = useContext(ProviderContext)
     
     useEffect(() => {
         const fileFolder = {}

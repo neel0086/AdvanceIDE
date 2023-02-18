@@ -1,0 +1,1 @@
+{"main":"int main(){\r\n    int x;\r\n    cin>>x;\r\n\tcout<<\"hello world\"<<\" \"<<x*x*x;\r\n\tfor(int i=0;i<200;i++){\r\n\t    cout<<i<<endl;\r\n\t}\r\n}"}

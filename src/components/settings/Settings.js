@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { SideBarContext } from '../../context/SideBarProvider'
 import { Button, Modal, Form } from 'react-bootstrap';
 import Setting from '../../images/settings.png'
 
@@ -8,12 +7,16 @@ import KeyBoardShortcuts from './KeyBoardShortcuts';
 import FontAndStyles from './FontAndStyles';
 import Appearence from './Appearence';
 import Privacy from './Privacy';
+import { ProviderContext } from '../../context/Provider';
 function Settings() {
 
-    const { sideBarVal, setSideBarVal } = useContext(SideBarContext)
     const [open, setOpen] = useState(false)
     const [option, setOption] = useState("")
 
+    const {
+        sideBarVal,
+        setSideBarVal
+    } = useContext(ProviderContext);
     useEffect(() => {
         if (sideBarVal == "Settings")
             setOpen(true)

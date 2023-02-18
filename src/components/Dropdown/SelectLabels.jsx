@@ -3,9 +3,8 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { LanguageContext } from "../../context/LanguageProvider";
-import { ThemeModeContext } from "../../context/ThemeModeProvider";
-import { FontContext } from "../../context/FontProvider";
+
+import { ProviderContext } from "../../context/Provider";
 
 export default function SelectLabels() {
 
@@ -14,10 +13,15 @@ export default function SelectLabels() {
   const [theme, setTheme] = useState("Dracula")
 
   //CONTEXT PROVIDERS
-  const { languageMode, setLanguageMode } = useContext(LanguageContext)
-  const { themeMode, setThemeMode } = useContext(ThemeModeContext)
-  const { fontVal, setFontVal } = useContext(FontContext)
 
+
+  const {
+    languageMode,
+    setLanguageMode,
+    themeMode,
+    setThemeMode,
+    fontVal,
+    setFontVal } = useContext(ProviderContext)
   //HANDLE THE LANGUAGE CHANGE
   const langHandleChange = (event) => {
     setLanguageMode(event.target.value);

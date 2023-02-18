@@ -1,13 +1,16 @@
-import { Typography } from "@mui/material";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import { SideBarContext } from "../../context/SideBarProvider";
+import { ProviderContext } from "../../context/Provider";
 import './style.css'
 function Tree() {
   const [inpArray, setInpArray] = useState(String)
   const [levelView, setLevelView] = useState(true)
   const [InpRoot, setInpRoot] = useState(NaN)
-  const { sideBarVal, setSideBarVal } = useContext(SideBarContext)
+
+  const {
+    sideBarVal,
+    setSideBarVal
+} = useContext(ProviderContext)
   let nodes = [], levelOrder = [], adj = {}, pos = {}
   let n, root;
 
@@ -117,7 +120,7 @@ function Tree() {
       nodes.forEach(i => {
         ctx.beginPath();
         ctx.lineWidth = 2.5;
-        ctx.strokeStyle = "black"
+        ctx.strokeStyle = "white"
         if (i in adj && adj[i].length == 2) {
           ctx.moveTo(pos[i][0] - r / 2 - deltaX, pos[i][1] + r / 2 + deltaY);
           ctx.lineTo(pos[adj[i][0]][0] + r / 2 + deltaX, pos[adj[i][0]][1] - r / 2 - deltaY);
@@ -177,9 +180,11 @@ function Tree() {
       nodes.forEach(i => {
 
         let wd = ctx.measureText(levelOrder[i]).width;
+       
         ctx.beginPath();
+        
         ctx.arc(pos[i][0], pos[i][1], r, 0, 2 * Math.PI);
-        ctx.fillStyle = "#a6a6a6";
+        ctx.fillStyle = "white";
         ctx.fill();
         ctx.fillStyle = "black";
         ctx.font = '19px arial';
