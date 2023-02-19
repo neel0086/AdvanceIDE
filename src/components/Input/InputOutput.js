@@ -5,13 +5,16 @@ import Save from "../../images/save.png"
 import { runCpp, runPy } from '../Editor/run';
 import { SuggestionContext } from '../../context/SuggestionProvider';
 import { ProviderContext } from '../../context/Provider';
+import Cross from "../../images/cross.png"
+
 const fs = window.require('fs');
 function InputOutput({ suggestionResult }) {
     const [outputData, setOutputData] = useState();
     const [inputData, setInputData] = useState("");
+    
     console.log(suggestionResult)
 
-    const { suggestionVal, setSuggestionVal } = useContext(SuggestionContext)
+    const { suggestionVal, setSuggestionVal,closeIo,setCloseIo } = useContext(SuggestionContext)
 
     const {
         fileVal,
@@ -108,6 +111,8 @@ function InputOutput({ suggestionResult }) {
                 <div className='runBtn'>
                     <img src={Save} onClick={SaveFile} />
                     <img src={Run} onClick={handleSubmit} />
+                    <img src={Cross} onClick={handleSubmit} />
+
                     {/* <img src={CloseBtn} className="closeBtn"/> */}
                 </div>
             </div>

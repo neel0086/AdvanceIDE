@@ -13,11 +13,13 @@ import InputOutput from "../Input/InputOutput";
 import { SuggestionContext } from "../../context/SuggestionProvider";
 import LeetcodeExtension from "../LeetcodeExtension/LeetcodeExtension";
 import { ProviderContext } from "../../context/Provider";
+
 const fs = window.require('fs');
 const Editor = () => {
   const { suggestionVal, setSuggestionVal } = useContext(SuggestionContext)
   const [currWord, setCurrWord] = useState("")
   const [suggestionResult,setSuggestionResult] =useState([])
+  const [closeIo,setCloseIo] = useState(50)
 
   const { languageMode,
     themeMode,
@@ -101,8 +103,10 @@ const Editor = () => {
     }
   }
 
+  
+
   return (
-    <div style={{ height: '50%' }}>
+    <div style={{ height: `${closeIo}+"%`}}>
       <Box elevation={3} sx={{ height: '100%' }}>
         <AceEditor
           ref={editorRef}
@@ -130,7 +134,7 @@ const Editor = () => {
         />
 
       </Box>
-      <InputOutput suggestionResult={suggestionResult}/>
+      <InputOutput suggestionResult={suggestionResult} closeIo={closeIo}/>
       {/* <LeetcodeExtension questionSlug="two-sum" /> */}
     </div>
   );
