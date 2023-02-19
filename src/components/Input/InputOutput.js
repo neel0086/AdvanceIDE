@@ -11,10 +11,10 @@ const fs = window.require('fs');
 function InputOutput({ suggestionResult }) {
     const [outputData, setOutputData] = useState();
     const [inputData, setInputData] = useState("");
-    
-    console.log(suggestionResult)
 
-    const { suggestionVal, setSuggestionVal,closeIo,setCloseIo } = useContext(SuggestionContext)
+    // console.log(suggestionResult)
+
+    const { suggestionVal, setSuggestionVal, closeIo, setCloseIo } = useContext(SuggestionContext)
 
     const {
         fileVal,
@@ -93,7 +93,7 @@ function InputOutput({ suggestionResult }) {
 
         })
     }
-    
+
     const copyHelper = (key) => {
         navigator.clipboard.writeText(suggestionVal[key]);
     }
@@ -111,14 +111,19 @@ function InputOutput({ suggestionResult }) {
                 <div className='runBtn'>
                     <img src={Save} onClick={SaveFile} />
                     <img src={Run} onClick={handleSubmit} />
-                    <img src={Cross} onClick={handleSubmit} />
+                    {closeIo == "88%" ?
+                        <img src={Cross} onClick={() => setCloseIo("50%")} />
+                        :
+                        <img src={Cross} onClick={() => setCloseIo("88%")} />
+                    }
+
 
                     {/* <img src={CloseBtn} className="closeBtn"/> */}
                 </div>
             </div>
             <div className="inp_out">
                 <div className='io-area'>
-                    
+
                     <textarea className='io-area io-area-text' onChange={(e) => SaveInput(e)} value={inputData} spellCheck='false' />
                 </div>
                 <div className='io-area'>
