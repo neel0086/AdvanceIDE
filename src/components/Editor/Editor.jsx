@@ -239,6 +239,7 @@ const Editor = () => {
               value={searchValue}
               onChange={(e) => handleSearchChange(e.target.value)}
               placeholder="Search"
+              spellCheck="false"
             />
             <span onClick={handleSearch}>Find</span>
             <span onClick={handleReplace}>Replace</span>

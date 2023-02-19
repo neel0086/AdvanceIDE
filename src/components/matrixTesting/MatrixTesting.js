@@ -19,12 +19,12 @@ function MatrixTesting() {
 
         
         // const generateBtn = document.getElementById('generate-btn');
-        const matrix=[]
-        try{
-            console.log(matrix)
-        matrix=JSON.parse(temp)
-        }
-        catch(e){console.log(e); return;}
+        // const matrix=[]
+        // try{
+            // console.log(matrix)
+        const matrix=JSON.parse(temp)
+        // }
+        // catch(e){console.log(e); return;}
         // Function to generate the matrix
         
 
