@@ -10,7 +10,7 @@ function Tree() {
   const {
     sideBarVal,
     setSideBarVal
-} = useContext(ProviderContext)
+  } = useContext(ProviderContext)
   let nodes = [], levelOrder = [], adj = {}, pos = {}
   let n, root;
 
@@ -180,9 +180,9 @@ function Tree() {
       nodes.forEach(i => {
 
         let wd = ctx.measureText(levelOrder[i]).width;
-       
+
         ctx.beginPath();
-        
+
         ctx.arc(pos[i][0], pos[i][1], r, 0, 2 * Math.PI);
         ctx.fillStyle = "white";
         ctx.fill();
@@ -253,14 +253,14 @@ function Tree() {
     })
 
     document.body.addEventListener('mouseup', (e) => {
-      
-        e.preventDefault()
-        if (dflag) {
-          document.body.setAttribute('style', 'cursor:default !important');
-          dflag = false
 
-        }
-      
+      e.preventDefault()
+      if (dflag) {
+        document.body.setAttribute('style', 'cursor:default !important');
+        dflag = false
+
+      }
+
     })
 
     window.addEventListener('mousemove', (e) => {

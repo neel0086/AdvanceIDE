@@ -1,0 +1,28 @@
+.leetcodeUi{
+    padding:20px;
+    background:var(--white);
+    width: 100%;
+    overflow-y: scroll;
+    /* flex-direction: row; */
+    /* position: relative; */
+
+}
+.leetcodeUi .le-inp{
+    border: none;
+    outline: none;
+    width: 50%;
+    height: 1.7rem;
+    border-radius:3px;
+    /* background-color: var(--fontChangeBack); */
+    background-color: var(--whiteSmoke);
+    color:var(--black);
+    padding: 2px 5px;
+}
+.leetcodeUi .q-button{
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.596);
+    color: white;
+    padding: 2px;
+    margin-left: 8px;
+}

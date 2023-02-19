@@ -75,12 +75,13 @@
   max-width: inherit;
   word-break: break-all;
   padding-left: 20px;
+  
 }
 
 .t-file,
 .t-folder {
-  font-size: 1.15em;
-  margin-bottom: 5px;
+  font-size: 1.25em;
+  margin-bottom: 3px;
   
 }
 .recc_tree span{
@@ -90,7 +91,8 @@
 }
 .recc_tree .t-file:hover,.recc_tree .t-folder:hover {
   background: var(--expandableHoverColor);
+
 }
 li{
-  border-left: 0.1px inset var(--expandableHoverColor);
+  border-left: 0.1px inset rgba(255, 255, 255, 0.22);
 }

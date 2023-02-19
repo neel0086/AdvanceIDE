@@ -102,7 +102,7 @@ const Editor = () => {
   }
 
   return (
-    <div style={{ height: '88%' }}>
+    <div style={{ height: '50%' }}>
       <Box elevation={3} sx={{ height: '100%' }}>
         <AceEditor
           ref={editorRef}
@@ -131,7 +131,7 @@ const Editor = () => {
 
       </Box>
       <InputOutput suggestionResult={suggestionResult}/>
-      <LeetcodeExtension questionId="two-sum" />
+      {/* <LeetcodeExtension questionSlug="two-sum" /> */}
     </div>
   );
 };

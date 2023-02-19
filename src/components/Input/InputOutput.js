@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import './InputOutput.css'
 import Run from "../../images/run.png"
 import Save from "../../images/save.png"
-
 import { runCpp, runPy } from '../Editor/run';
 import { SuggestionContext } from '../../context/SuggestionProvider';
 import { ProviderContext } from '../../context/Provider';
@@ -91,13 +90,16 @@ function InputOutput({ suggestionResult }) {
 
         })
     }
-
+    
+    const copyHelper = (key) => {
+        navigator.clipboard.writeText(suggestionVal[key]);
+    }
     return (
         <div className="io-screen" style={{ height: '100%', width: '100%' }}>
             <div className='io-navbar'>
                 <div className='suggestion'>
                     {suggestionResult && suggestionResult.map((key, index) => {
-                        return <span>{key.item}</span>
+                        return <span onClick={() => copyHelper(key.item)}>{key.item}</span>
                     })}
 
                     {/* <span>hello</span> */}
@@ -111,7 +113,7 @@ function InputOutput({ suggestionResult }) {
             </div>
             <div className="inp_out">
                 <div className='io-area'>
-
+                    
                     <textarea className='io-area io-area-text' onChange={(e) => SaveInput(e)} value={inputData} spellCheck='false' />
                 </div>
                 <div className='io-area'>
