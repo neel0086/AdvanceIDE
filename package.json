@@ -6,7 +6,6 @@
   "main": "public/electron.js",
   "proxy": "https://leetcode.com",
   "dependencies": {
-    
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.4",
@@ -66,6 +65,7 @@
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
     "electron": "^22.0.0",
+    "electron-packager": "^17.1.1",
     "wait-on": "^6.0.1"
   }
 }

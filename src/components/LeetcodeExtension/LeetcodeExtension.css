@@ -26,3 +26,9 @@
     padding: 2px;
     margin-left: 8px;
 }
+.q-button:hover{
+    filter: invert(0.1);
+}
+.l-search{
+    display: flex;
+}

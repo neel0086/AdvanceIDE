@@ -12,34 +12,34 @@ function MatrixTesting() {
         setSideBarVal
     } = useContext(ProviderContext)
 
-    const setMatrix = (temp) => {
-        // console.log(matrix)
+    const setMatrix = async (temp) => {
         const canvas = document.getElementById('matrix-visualizer');
         const ctx = canvas.getContext('2d');
-
-        
-        // const generateBtn = document.getElementById('generate-btn');
-        // const matrix=[]
-        // try{
+        let matrix = []
+        console.log("Hello")
+        try {
+            console.log("Hello")
             // console.log(matrix)
-        const matrix=JSON.parse(temp)
-        // }
-        // catch(e){console.log(e); return;}
-        // Function to generate the matrix
-        
-
-        // Function to draw the matrix
+            matrix = await JSON.parse(temp)
+            if (matrix.length > 0) {
+                console.log(matrix)
+                drawMatrix();
+            }
+    
+            
+        }
+        catch (e) { console.log(e); return; }
         function drawMatrix() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             let cellSize = 20;
-            let margin = 10;
+            let margin = 5;
             let numRows = matrix.length;
             let numCols = matrix[0].length;
             let totalWidth = numCols * cellSize + (numCols - 1) * margin;
             let totalHeight = numRows * cellSize + (numRows - 1) * margin;
             let x = (canvas.width - totalWidth) / 2;
             let y = (canvas.height - totalHeight) / 2;
-            ctx.font = "12px Arial";
+            ctx.font = '10px arial';
             for (let i = 0; i < numRows; i++) {
                 for (let j = 0; j < numCols; j++) {
                     let cellX = x + j * (cellSize + margin);
@@ -47,26 +47,18 @@ function MatrixTesting() {
                     ctx.fillStyle = 'white';
                     ctx.fillRect(cellX, cellY, cellSize, cellSize);
                     ctx.fillStyle = 'black';
-                    ctx.fillText(matrix[i][j], cellX + cellSize / 2 - 8, cellY + cellSize / 2 + 8);
+                    ctx.fillText(matrix[i][j], cellX + cellSize / 2 - 4, cellY + cellSize / 2 + 4);
+                    ctx.stroke();
                 }
             }
         }
-
-        
-
-        // Initial matrix generation and drawing
-        // generateMatrix(3, 3);
-        drawMatrix();
-
-
+        if (matrix.length > 0) {
+            console.log("Hy")
+            drawMatrix();
+        }
     };
-
-
-
     useEffect(() => {
         const divEl = document.querySelector('.treevis');
-
-
         let cflag, dflag = false, temp;
         const lastPoint = { x: null, y: null }
         divEl.addEventListener('mousedown', (e) => {
@@ -80,32 +72,22 @@ function MatrixTesting() {
                 dflag = true
             }
         })
-
         document.body.addEventListener('mouseup', (e) => {
-
             e.preventDefault()
             if (dflag) {
                 document.body.setAttribute('style', 'cursor:default !important');
                 dflag = false
-
             }
-
         })
-
         window.addEventListener('mousemove', (e) => {
-
             if (dflag) {
                 // window.style.cursor = "grabbing"
                 temp = temp + (e.clientX > lastPoint.x ? e.clientX - lastPoint.x : e.clientX < lastPoint.x ? e.clientX - lastPoint.x : 0)
                 divEl.style.width = temp + "px"
-                // temp += 1
-
             }
             lastPoint.x = e.clientX
             lastPoint.y = e.clientY
         });
-
-
     })
     useEffect(() => {
         const divEl = document.querySelector('.treevis');
@@ -130,7 +112,7 @@ function MatrixTesting() {
                     <button
                         type="text"
                         className="rootInp"
-                        style={{color:'white'}}
+                        style={{ color: 'white' }}
                         placeholder="Genrate"
                     />
 

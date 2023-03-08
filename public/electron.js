@@ -17,6 +17,7 @@ function createWindow() {
       nodeIntegration: true,
       contextIsolation: false,
       enableRemoteModule: true,
+      webSecurity: false
     },
   });
   mainWindow.maximize()

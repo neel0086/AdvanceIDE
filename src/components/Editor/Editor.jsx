@@ -231,9 +231,9 @@ const Editor = () => {
       {/* <LeetcodeExtension questionSlug="two-sum" /> */}
       <div className="context-options">
         {openTools ?
-          <><span onClick={addSuggestionFunction} title='Select a whole function and click'>Add</span>
-            <span onClick={copyOnClick}>Copy</span>
-            <span onClick={pasteOnClick}>Paste</span>
+          <><span className="btn-tool" onClick={addSuggestionFunction} title='Select a whole function and click'>Add</span>
+            <span className="btn-tool" onClick={copyOnClick}>Copy</span>
+            <span className="btn-tool" onClick={pasteOnClick}>Paste</span>
             <input
               type="text"
               value={searchValue}
@@ -241,13 +241,13 @@ const Editor = () => {
               placeholder="Search"
               spellCheck="false"
             />
-            <span onClick={handleSearch}>Find</span>
-            <span onClick={handleReplace}>Replace</span>
-            <span onClick={handleReplaceAll}>ReplaceAll</span>
-            <span onClick={()=>setOpenTools(false)}><img src={backArrow} /></span>
+            <span className="btn-tool" onClick={handleSearch}>Find</span>
+            <span className="btn-tool" onClick={handleReplace}>Replace</span>
+            <span className="btn-tool" onClick={handleReplaceAll}>ReplaceAll</span>
+            <span className="btn-tool" onClick={()=>setOpenTools(false)}><img src={backArrow} /></span>
           </>
           :
-          <div onClick={()=>setOpenTools(true)}>
+          <div className="btn-tool" onClick={()=>setOpenTools(true)}>
             <span>
               Open Tools
             </span>

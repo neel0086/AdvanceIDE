@@ -64,3 +64,7 @@
   /* border-right: 5px groove grey; */
   
 }
+.btn-tool:hover{
+  filter: invert(0.2);
+
+}

@@ -4,24 +4,25 @@ import './LeetcodeExtension.css'
 function LeetcodeExtension({ questionId }) {
   const [question, setQuestion] = useState(null);
   const [questionName, setQuestionName] = useState("");
-
+  const [questionHeading,setQuestionHeading] = useState("");
   const [input, setInput] = useState(null);
   const { sideBarVal } = useContext(ProviderContext)
-  useEffect(() => {
-    fetch('/graphql?query=query{question(titleSlug:"two-sum"){questionId title content}}')
-      .then(response => response.json())
-      .then(data => { console.log(data.data.question['content']); setQuestion(data.data.question) })
-      .catch(error => console.error(error));
-  }, []);
+  // useEffect(() => {
+  //   fetch('/graphql?query=query{question(titleSlug:"two-sum"){questionId title content}}')
+  //     .then(response => response.json())
+  //     .then(data => { console.log(data.data.question['content']); setQuestion(data.data.question) })
+  //     .catch(error => console.error(error));
+  // }, []);
 
   const fetchQuestion = () => {
     console.log(questionName)
-    
+    setQuestionHeading(questionName)
     fetch(`/graphql?query=query{question(titleSlug:"${questionName}"){questionId title content}}`)
       .then(response => response.json())
       .then(data => { console.log(data.data.question['content']); setQuestion(data.data.question) })
       .catch(error => console.error(error));
       // setQuestionName(" ")
+      setQuestionName('')
   }
 
   //PAGE SIZING
@@ -96,10 +97,11 @@ function LeetcodeExtension({ questionId }) {
     <div className='leetcodeUi' style={{ display: `${sideBarVal == "Leetcode" ? 'block' : 'none'}`, width: '100%' }}>
       {/* <h2>{question.title}</h2> */}
       <div>
-        <div>
+        <div className='l-search'>
           <input className='le-inp' placeholder="Type to enter the question name" value={questionName} onChange={(e)=>setQuestionName(e.target.value)}/>
           <button className='q-button' onClick={fetchQuestion}>Check</button>
         </div>
+        <h4>{questionHeading.toUpperCase()}</h4>
         {question && <p dangerouslySetInnerHTML={{ __html: question['content'] }} ></p>}
         {question && <p>Input: {input}</p>}
       </div>
