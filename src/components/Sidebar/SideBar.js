@@ -38,7 +38,7 @@ export default function SideBar() {
         <img className="d-icons" src={Folder} onClick={() => setSideBarVal(sideBarVal == "FolderView" ? "" : "FolderView")} width='40px' />
         <img className="d-icons" src={Tree} onClick={() => setSideBarVal(sideBarVal == "TreeView" ? "" : "TreeView")} width='40px' alt="" />
         <img className="d-icons" src={Matrix} onClick={() => setSideBarVal(sideBarVal == "MatrixView" ? "" : "MatrixView")} width='40px' alt="" />
-        <img className="d-icons" src={Setting} onClick={() => setSideBarVal(sideBarVal == "Settings" ? "" : "Settings")} width='40px' alt="" />
+        {/* <img className="d-icons" src={Setting} onClick={() => setSideBarVal(sideBarVal == "Settings" ? "" : "Settings")} width='40px' alt="" /> */}
         <img className="d-icons" src={Leetcode} onClick={() => setSideBarVal(sideBarVal == "Leetcode" ? "" : "Leetcode")} width='40px' alt="" />
 
       </div>

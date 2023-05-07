@@ -1,6 +1,6 @@
 .leetcodeUi{
     padding:20px;
-    background:var(--white);
+    background:var(--navbarDark);
     width: 100%;
     overflow-y: scroll;
     /* flex-direction: row; */
@@ -21,14 +21,27 @@
 .leetcodeUi .q-button{
     border: none;
     outline: none;
-    background-color: rgba(0, 0, 0, 0.596);
+    background-color: rgba(0, 106, 255, 0.596);
     color: white;
     padding: 2px;
     margin-left: 8px;
 }
 .q-button:hover{
-    filter: invert(0.1);
+    /* filter: invert(0.4); */
 }
 .l-search{
     display: flex;
+}
+.l-plain{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    flex-direction: column;
+}
+.l-container{
+    height: 100%;
+}
+p{
+    font-family: Roboto;
 }

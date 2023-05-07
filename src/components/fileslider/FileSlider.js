@@ -1,6 +1,7 @@
 import React, { useState, useRef, useContext, useEffect } from 'react';
 import { ProviderContext } from '../../context/Provider';
 import './FileSlider.css'
+import { FileIcons } from '../Foldertree/FileIcons';
 
 function FileSlider() {
 
@@ -16,7 +17,7 @@ function FileSlider() {
     const fileFirstUpdate = useRef(true)
     const dragItem = useRef();
     const dragOverItem = useRef();
-    
+
 
     //CHECK IF FILE ALREADY EXIST IN THE LIST
     const checkfilepath = (obj) => {
@@ -29,6 +30,18 @@ function FileSlider() {
         })
         if (!flag) return false
         return true
+    }
+
+    const getFileIcon = (fileName) => {
+        if (fileName) {
+            const extension = fileName.split('.').pop().toLowerCase()
+            if (String(FileIcons[extension]) != "undefined") {
+    
+                return FileIcons[extension];
+    
+            }
+            else {  return FileIcons["default"] }
+        }
     }
 
     //ONCLICK ON FILE OF FILE SLIDER MAKE IT ACTIVE IF IT IS CLICKED ON CROSS REMOVE THAT FILE
@@ -47,7 +60,7 @@ function FileSlider() {
             }
             setFileVal(list.length >= 0 ? list[0] : null)
             localStorage.setItem('activeFile', JSON.stringify(list[0]));
-            
+
             localStorage.setItem('items', JSON.stringify(list));
         }
         else {
@@ -63,8 +76,10 @@ function FileSlider() {
             if (localStorage.getItem('items') != null && localStorage.getItem('items').length > 0) {
                 setList(await JSON.parse(localStorage.getItem('items')));
             }
-            if (localStorage.getItem('activeFile') != null)
+            if (localStorage.getItem('activeFile') != "undefined" && localStorage.getItem('activeFile') != null) {
+                console.log(localStorage.getItem('activeFile'))
                 setFileVal(await JSON.parse(localStorage.getItem('activeFile')))
+            }
             fileFirstUpdate.current = false
         }
     }, [fileVal]);
@@ -76,15 +91,17 @@ function FileSlider() {
             return;
         }
         else {
-            let obj = { "path": fileVal['path'], "name": fileVal['name'] }
-            var val = checkfilepath(obj)
-            if (val == true && obj['path'] != filenum) {
-                list.push(obj)
-                setList(list)
-                localStorage.setItem('items', JSON.stringify(list));
+            if (fileVal) {
+                let obj = { "path": fileVal['path'], "name": fileVal['name'] }
+                var val = checkfilepath(obj)
+                if (val == true && obj['path'] != filenum) {
+                    list.push(obj)
+                    setList(list)
+                    localStorage.setItem('items', JSON.stringify(list));
 
+                }
+                setFilenum(fileVal["path"]);
             }
-            setFilenum(fileVal["path"]);
         }
     }, [fileVal])
 
@@ -118,6 +135,7 @@ function FileSlider() {
                         onDragEnd={drop}
                         key={index}
                         draggable>
+                        <img src={getFileIcon(item['name'])} style={{paddingRight:'10px',width:'32px'}}/>
                         {item["name"]}
                         <span className='cross active'
                             id={'#' + item["path"]}

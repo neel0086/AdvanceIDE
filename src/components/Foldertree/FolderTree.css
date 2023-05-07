@@ -4,7 +4,7 @@
   flex-direction: column;
   width: inherit;
   height: inherit;
-
+  letter-spacing: 1px;
 }
 
 .ft-nav {
@@ -75,13 +75,16 @@
   max-width: inherit;
   word-break: break-all;
   padding-left: 20px;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
   
 }
 
 .t-file,
 .t-folder {
-  font-size: 1.25em;
-  margin-bottom: 3px;
+  font-size: 1.17em;
+  margin-bottom: 4px;
   
 }
 .recc_tree span{

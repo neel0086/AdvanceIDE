@@ -16,7 +16,7 @@ function SidebarDisplay() {
             {sideBarVal == "FolderView" ? <SidebarExpandable /> :
                 sideBarVal == "MatrixView" ? <MatrixTesting /> :
                     sideBarVal == "TreeView" ? <Tree /> :
-                        sideBarVal == "Settings" ? <Settings /> :
+                        // sideBarVal == "Settings" ? <Settings /> :
                             <LeetcodeExtension />
             }
         </>

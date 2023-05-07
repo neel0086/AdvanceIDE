@@ -14,9 +14,9 @@ const getFileIcon = (fileName) => {
     }
 }
 function FolderRecc(props) {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(props.open);
     const { setFileVal } = useContext(ProviderContext);
-
+    console.log(props.folder,props.key)
     const toggleFolder = (e) => {
         if (e.children) {
             let x=0
@@ -41,7 +41,7 @@ function FolderRecc(props) {
                 {props.folder.children && isOpen &&
                     <ul>
                         {props.folder.children.map((child, index) => (
-                            <FolderRecc key={index} folder={child} />
+                            <FolderRecc key={index} folder={child} open={false}/>
                         ))}
                     </ul>
                 }

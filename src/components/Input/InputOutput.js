@@ -6,22 +6,25 @@ import { runCpp, runPy } from '../Editor/run';
 import { SuggestionContext } from '../../context/SuggestionProvider';
 import { ProviderContext } from '../../context/Provider';
 import Cross from "../../images/cross.png"
+import { Alert } from 'react-bootstrap';
 
 const fs = window.require('fs');
 function InputOutput({ suggestionResult }) {
     const [outputData, setOutputData] = useState();
     const [inputData, setInputData] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
+    const [AlertText, setAlertText] = useState("")
 
+    function handleShowAlert(alertMssg) {
+        setAlertText(alertMssg)
+        setShowAlert(true);
+        setTimeout(() => setShowAlert(false), 1500); // Hide alert after 5 seconds
+    }
     // console.log(suggestionResult)
 
     const { suggestionVal, setSuggestionVal, closeIo, setCloseIo } = useContext(SuggestionContext)
 
-    const {
-        fileVal,
-        codeVal,
-        setCodeVal,
-        languageMode
-    } = useContext(ProviderContext)
+    const { fileVal, codeVal, setCodeVal, languageMode } = useContext(ProviderContext)
 
     const outputFlag = useRef()
     useEffect(() => {
@@ -102,19 +105,19 @@ function InputOutput({ suggestionResult }) {
             <div className='io-navbar'>
                 <div className='suggestion'>
                     {suggestionResult && suggestionResult.map((key, index) => {
-                        return <span onClick={() => copyHelper(key.item)}>{key.item}</span>
+                        return <span onClick={() => { copyHelper(key.item); handleShowAlert("Function Copied to Clipboard") }}>{key.item}</span>
                     })}
 
                     {/* <span>hello</span> */}
 
                 </div>
                 <div className='runBtn'>
-                    <img src={Save} onClick={SaveFile} />
-                    <img src={Run} onClick={handleSubmit} />
-                    {closeIo == "88%" ?
+                    <img src={Save} onClick={(e) => { SaveFile(); handleShowAlert("File Saved Succesfully...") }} />
+                    <img src={Run} onClick={(e) => { handleSubmit(); handleShowAlert("Processing Output...") }} />
+                    {closeIo == "89%" ?
                         <img src={Cross} onClick={() => setCloseIo("50%")} />
                         :
-                        <img src={Cross} onClick={() => setCloseIo("88%")} />
+                        <img src={Cross} onClick={() => setCloseIo("89%")} />
                     }
 
 
@@ -123,13 +126,17 @@ function InputOutput({ suggestionResult }) {
             </div>
             <div className="inp_out">
                 <div className='io-area'>
-
+                    <div className='io-btn' >Input</div>
                     <textarea className='io-area io-area-text' onChange={(e) => SaveInput(e)} value={inputData} spellCheck='false' />
                 </div>
                 <div className='io-area'>
+                    <div className='io-btn'>Output</div>
                     <textarea className='io-area io-area-text' spellCheck='false' value={outputData} />
                 </div>
             </div>
+            <Alert variant="primary" style={{ position: 'absolute', top: "-50px", left: '650px', width: 'fit-content', fontSize: '18px', color: 'black', fontFamily: 'Roboto' }} show={showAlert} onClose={() => setShowAlert(false)} >
+                <span style={{ fontWeight: 'bold', letterSpacing: "1.5px" }}>{AlertText}</span>
+            </Alert>
         </div>
     )
 }

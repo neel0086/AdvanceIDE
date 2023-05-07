@@ -14,15 +14,22 @@ import { SuggestionContext } from "../../context/SuggestionProvider";
 import { ProviderContext } from "../../context/Provider";
 import { Range } from 'ace-builds';
 import backArrow from '../../images/backArrow.png'
-
 import ace from 'ace-builds';
+import { Alert } from "react-bootstrap";
 const fs = window.require('fs');
 const Editor = () => {
   const { suggestionVal, setSuggestionVal } = useContext(SuggestionContext)
   const [currWord, setCurrWord] = useState("")
   const [suggestionResult, setSuggestionResult] = useState([])
-  // const [closeIo, setCloseIo] = useState(50)
   const [openTools, setOpenTools] = useState(false)
+  const [showAlert, setShowAlert] = useState(false);
+  const [AlertText, setAlertText] = useState("")
+
+  function handleShowAlert(alertMssg) {
+    setAlertText(alertMssg)
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 1500); // Hide alert after 5 seconds
+  }
 
   const { languageMode,
     themeMode,
@@ -30,7 +37,7 @@ const Editor = () => {
     fileVal,
     codeVal,
     setCodeVal } = useContext(ProviderContext)
-  const {closeIo} = useContext(SuggestionContext)
+  const { closeIo } = useContext(SuggestionContext)
   // const [suggestionFunctions, setSuggestionFunctions] = useState({});
   const OnChangeHandler = (value) => {
     setCodeVal(value);
@@ -40,10 +47,13 @@ const Editor = () => {
 
   //SETCODE ON TERMINAL WHENEVER FILE CHANGES
   useEffect(() => {
-    if (fileVal['path']) {
+    if (fileVal && fileVal['path']) {
       fs.readFile(fileVal['path'], 'utf8', function (err, data) {
         setCodeVal(data);
       })
+    }
+    else {
+      setCodeVal("")
     }
   }, [fileVal])
   const OnBlurHandler = () => {
@@ -57,32 +67,8 @@ const Editor = () => {
   // ON SUBMIT OF CODE
   const editorRef = useRef(null);
 
-  // window.oncontextmenu =
-  //  function () {
 
-  //   const editor = editorRef.current.editor;
-  //   const selectedText = editor.getCopyText();
-  //   const functionNameMatch = selectedText.match(/int\s+(\w+)\s*\(/);
 
-  //   if (functionNameMatch) {
-  //     const functionName = functionNameMatch[1];
-  //     setSuggestionVal((prevFunctions) => {
-  //       return { ...prevFunctions, [functionName]: selectedText };
-  //     });
-  //     console.log("Added function:", functionName, suggestionVal);
-  //   } else {
-  //     console.log("Selected text does not include a valid function name");
-  //   }
-  //   fs.writeFile("D:\\SDP\\io\\suggestion.json", JSON.stringify({ ...suggestionVal, [functionNameMatch[1]]: selectedText }
-  //   ), err => {
-
-  //     // Checking for errors
-  //     if (err) throw err;
-
-  //     console.log("file writing"); // Success
-
-  //   })
-  // }
   const fuse = useRef(null);
 
   useEffect(() => {
@@ -229,10 +215,13 @@ const Editor = () => {
       </Box>
       <InputOutput suggestionResult={suggestionResult} closeIo={closeIo} />
       {/* <LeetcodeExtension questionSlug="two-sum" /> */}
+      <Alert variant="primary" style={{ position: 'absolute', top: "-50px", left: '650px', width: 'fit-content', fontSize: '18px', color: 'black', fontFamily: 'Roboto' }} show={showAlert} onClose={() => setShowAlert(false)} >
+        <span style={{ fontWeight: 'bold', letterSpacing: "1.5px" }}>{AlertText}</span>
+      </Alert>
       <div className="context-options">
         {openTools ?
-          <><span className="btn-tool" onClick={addSuggestionFunction} title='Select a whole function and click'>Add</span>
-            <span className="btn-tool" onClick={copyOnClick}>Copy</span>
+          <><span className="btn-tool" onClick={(e)=>{addSuggestionFunction(e);handleShowAlert("Function added to snippet")}} title='Select a whole function and click'>Add</span>
+            <span className="btn-tool" onClick={(e)=>{copyOnClick(e);handleShowAlert("Text copied to clipboard")}}>Copy</span>
             <span className="btn-tool" onClick={pasteOnClick}>Paste</span>
             <input
               type="text"
@@ -244,10 +233,10 @@ const Editor = () => {
             <span className="btn-tool" onClick={handleSearch}>Find</span>
             <span className="btn-tool" onClick={handleReplace}>Replace</span>
             <span className="btn-tool" onClick={handleReplaceAll}>ReplaceAll</span>
-            <span className="btn-tool" onClick={()=>setOpenTools(false)}><img src={backArrow} /></span>
+            <span className="btn-tool" onClick={() => setOpenTools(false)}><img src={backArrow} /></span>
           </>
           :
-          <div className="btn-tool" onClick={()=>setOpenTools(true)}>
+          <div className="btn-tool" onClick={() => setOpenTools(true)}>
             <span>
               Open Tools
             </span>

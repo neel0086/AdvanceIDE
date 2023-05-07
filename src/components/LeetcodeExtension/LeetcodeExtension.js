@@ -1,28 +1,31 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Provider, { ProviderContext } from '../../context/Provider';
 import './LeetcodeExtension.css'
+import { Alert } from 'react-bootstrap';
 function LeetcodeExtension({ questionId }) {
   const [question, setQuestion] = useState(null);
   const [questionName, setQuestionName] = useState("");
-  const [questionHeading,setQuestionHeading] = useState("");
+  const [questionHeading, setQuestionHeading] = useState("");
   const [input, setInput] = useState(null);
   const { sideBarVal } = useContext(ProviderContext)
-  // useEffect(() => {
-  //   fetch('/graphql?query=query{question(titleSlug:"two-sum"){questionId title content}}')
-  //     .then(response => response.json())
-  //     .then(data => { console.log(data.data.question['content']); setQuestion(data.data.question) })
-  //     .catch(error => console.error(error));
-  // }, []);
+  const [showAlert, setShowAlert] = useState(false);
+  const [AlertText, setAlertText] = useState("")
+
+  function handleShowAlert(alertMssg) {
+    setAlertText(alertMssg)
+    setShowAlert(true);
+    setTimeout(() => setShowAlert(false), 1500); // Hide alert after 5 seconds
+  }
 
   const fetchQuestion = () => {
     console.log(questionName)
     setQuestionHeading(questionName)
     fetch(`/graphql?query=query{question(titleSlug:"${questionName}"){questionId title content}}`)
       .then(response => response.json())
-      .then(data => { console.log(data.data.question['content']); setQuestion(data.data.question) })
+      .then(data => { setQuestion(data.data.question) })
       .catch(error => console.error(error));
-      // setQuestionName(" ")
-      setQuestionName('')
+    // setQuestionName(" ")
+    setQuestionName('')
   }
 
   //PAGE SIZING
@@ -94,18 +97,27 @@ function LeetcodeExtension({ questionId }) {
   }, [sideBarVal])
 
   return (
-    <div className='leetcodeUi' style={{ display: `${sideBarVal == "Leetcode" ? 'block' : 'none'}`, width: '100%' }}>
-      {/* <h2>{question.title}</h2> */}
-      <div>
+    <div className='leetcodeUi' style={{ display: `${sideBarVal == "Leetcode" ? 'block' : 'none'}`, width: '100% !important' }}>
+      <Alert variant="primary" style={{ position: 'absolute', top: "-50px", left: '650px', width: 'fit-content', fontSize: '18px', color: 'black', fontFamily: 'Roboto' }} show={showAlert} onClose={() => setShowAlert(false)} >
+        <span style={{ fontWeight: 'bold', letterSpacing: "1.5px" }}>{AlertText}</span>
+      </Alert>
+      <div className='l-container'>
         <div className='l-search'>
-          <input className='le-inp' placeholder="Type to enter the question name" value={questionName} onChange={(e)=>setQuestionName(e.target.value)}/>
-          <button className='q-button' onClick={fetchQuestion}>Check</button>
+          <input className='le-inp' placeholder="Type to enter the question name" value={questionName} onChange={(e) => setQuestionName(e.target.value)} />
+          <button className='q-button' onClick={(e)=>{fetchQuestion();handleShowAlert("Feteching the data")}}>Check</button>
         </div>
-        <h4>{questionHeading.toUpperCase()}</h4>
-        {question && <p dangerouslySetInnerHTML={{ __html: question['content'] }} ></p>}
+        <h4 style={{ color: 'white' }}>{questionHeading.toUpperCase()}</h4>
+        {question && <p style={{ color: 'white', fontFamily: 'Roboto', fontSize: '18px' }} dangerouslySetInnerHTML={{ __html: question['content'] }} ></p>}
         {question && <p>Input: {input}</p>}
+
+        {!question && <div className='l-plain'>
+          <img src="https://api.dicebear.com/5.x/fun-emoji/svg?seed=Annie&radius=20" width="100" />
+          <p style={{ color: 'white' }}>Nothing show up type question above</p>
+        </div>
+        }
       </div>
     </div>
+
   );
 }
 

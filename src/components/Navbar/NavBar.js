@@ -3,9 +3,11 @@ import React, { useContext, useEffect, useRef } from 'react'
 import Dropdown from 'react-bootstrap/Dropdown';
 import './NavBar.css'
 import Logo from '../../images/logo.png'
+
 import SelectLabels from '../Dropdown/SelectLabels';
 
 import { ProviderContext } from '../../context/Provider';
+import WindowTools from './WindowTools';
 
 
 function NavBar() {
@@ -30,20 +32,31 @@ function NavBar() {
 
   const SaveFile = () => {
     if (fs.existsSync(fileVal['path'])) {
-      fs.writeFile(fileVal['path'],codeVal,(err)=>{
-        if(err){
+      fs.writeFile(fileVal['path'], codeVal, (err) => {
+        if (err) {
         }
-        else{
+        else {
           console.log("Sucess");
         }
       })
     }
   }
 
-  const SaveAsFile = () =>{
-    
+  const openInspect = () => {
+    const event = new KeyboardEvent('keypress', {
+      code: 'KeyI',
+      key: 'i',
+      ctrlKey: true,
+      shiftKey: true,
+    });
+
+    // dispatch the event to trigger the keypress event
+    window.dispatchEvent(event);
   }
 
+  const SaveAsFile = () => {
+
+  }
   return (
     <div className='n-container'>
 
@@ -80,7 +93,7 @@ function NavBar() {
 
                     </Dropdown.Item>
                     <Dropdown.Item href="#/action-2">
-                      <label htmlFor="folder" style={{ cursor: 'pointer' }}>Open folder
+                      <label htmlFor="folder" style={{ cursor: 'pointer', width: '100%', height: '100%' }}>Open folder
                       </label>
                       <input
                         type="file"
@@ -95,8 +108,8 @@ function NavBar() {
                     </Dropdown.Item>
 
                     <Dropdown.Item href="#/action-3">
-                      <label onClick={{SaveAsFile}}>Save As</label>
-                      </Dropdown.Item>
+                      <label onClick={{ SaveAsFile }}>Save As</label>
+                    </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Typography>
@@ -122,9 +135,9 @@ function NavBar() {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                    <Dropdown.Item  ><span onClick={(e) => { openInspect() }}>Open Developer Tools</span></Dropdown.Item>
+                    {/* <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
                   </Dropdown.Menu>
                 </Dropdown>
               </Typography>
@@ -135,7 +148,9 @@ function NavBar() {
               </Typography>
             </Box>
           </Box>
+          <WindowTools />
         </Toolbar>
+
       </AppBar>
 
 

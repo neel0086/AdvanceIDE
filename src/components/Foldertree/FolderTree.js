@@ -65,7 +65,7 @@ function FolderTree() {
             </div>
             <div className='treeview'>
                 <ul id="myUL" >
-                    <FolderRecc folder={folderData}/>
+                    <FolderRecc folder={folderData} open={true}/>
                     
 
                 </ul>

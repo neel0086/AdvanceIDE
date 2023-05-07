@@ -11,5 +11,5 @@ export const FileIcons = {
     md:"/images/fileIcons/md.png",
     gitignore:"/images/fileIcons/gitignore.png",
     env:"/images/fileIcons/env.png",
-    default:"/images/fileIcons/file.png"
+    default:"/images/fileIcons/hashtag.png"
 }

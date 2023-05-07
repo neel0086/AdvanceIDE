@@ -236,8 +236,6 @@ function Tree() {
 
   useEffect(() => {
     const divEl = document.querySelector('.treevis');
-
-
     let cflag, dflag = false, temp;
     const lastPoint = { x: null, y: null }
     divEl.addEventListener('mousedown', (e) => {
@@ -251,6 +249,20 @@ function Tree() {
         dflag = true
       }
     })
+    divEl.addEventListener('mouseover', (e) => {
+      // 
+      let temp1 = e.clientX
+      temp = temp1
+      var rect = e.target.getBoundingClientRect();
+      var x = e.clientX - rect.left; //x position within the element.
+      if (divEl.offsetWidth - 14 <= x) {
+        document.body.setAttribute('style', 'cursor:e-resize !important');
+
+      }
+      else {
+        document.body.setAttribute('style', 'cursor:default !important');
+      }
+    })
 
     document.body.addEventListener('mouseup', (e) => {
 
@@ -262,6 +274,7 @@ function Tree() {
       }
 
     })
+
 
     window.addEventListener('mousemove', (e) => {
 

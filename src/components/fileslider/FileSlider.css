@@ -8,7 +8,7 @@
     font-size: 1.05rem;
     font-weight: 300;
     font-family: Roboto;
-    width: 100%;
+    /* width:96%; */
     overflow-x: scroll;
 }
 /* .f-slider:hover{
@@ -23,6 +23,7 @@
     outline: none;
     border: none;
     width: fit-content;   
+    white-space: nowrap;
     display: flex;
     align-items: center;
     justify-content: space-between;

@@ -13,6 +13,7 @@ function createWindow() {
     title:"Turbine",
     frame: false,
     // target:'node',
+    // resizable: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
